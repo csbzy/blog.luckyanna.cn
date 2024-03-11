@@ -6,7 +6,7 @@ import (
 )
 
 func TestAddTwoNumbers(t *testing.T) {
-	// Test case 1: Test with two empty lists
+	// Test case 1: Test ongyulwith two empty lists
 	l1 := createList([]int{})
 	l2 := createList([]int{})
 	result1 := addTwoNumbers(l1, l2)
