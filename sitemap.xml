@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.luckyanna.cn/categories/</loc>
+    <lastmod>2024-01-19T11:32:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.luckyanna.cn/categories/golang/</loc>
+    <lastmod>2024-01-19T11:32:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.luckyanna.cn/post/2024/1/go_escape_analytic/</loc>
     <lastmod>2024-01-19T11:32:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -32,13 +46,6 @@
   <url>
     <loc>https://blog.luckyanna.cn/post/2024/1/golang_gc/</loc>
     <lastmod>2024-01-19T09:21:21+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.luckyanna.cn/categories/</loc>
-    <lastmod>2024-01-18T16:02:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -227,13 +234,6 @@
   
   <url>
     <loc>https://blog.luckyanna.cn/post/flutter-ffi-golang/</loc>
-    <lastmod>2023-09-18T17:14:59+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.luckyanna.cn/categories/golang/</loc>
     <lastmod>2023-09-18T17:14:59+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
