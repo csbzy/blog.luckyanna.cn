@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Swift on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/swift/</link>
+    <description>Recent content in Swift on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 10 Dec 2015 10:42:07 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux下写swift</title>
+      <link>https://blog.luckyanna.cn/post/coding-with-swift-on-linux/</link>
+      <pubDate>Thu, 10 Dec 2015 10:42:07 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/coding-with-swift-on-linux/</guid>
+      <description>swift 终于开源了，赶紧用linux尝尝鲜。 目前swift支持的linux版本有 ubuntu15.10 和ubuntu 14.04.下面我会用Ubuntu14.04.1来</description>
+    </item>
+  </channel>
+</rss>

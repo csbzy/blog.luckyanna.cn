@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>networks on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/categories/networks/</link>
+    <description>Recent content in networks on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 18 Jan 2024 16:02:59 +0800</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/categories/networks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TCP连接相关问题</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/tcp/</link>
+      <pubDate>Thu, 18 Jan 2024 16:02:59 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/tcp/</guid>
+      <description>TCP 连接建立,断开过程 TCP的三次握手是建立TCP连接的过程,下面是TCP连接三次握手和断开四次挥手过程的状态机流程图： sequenceDiagram participant Client participant Server Client-&gt;&gt;Server: SYN Server--&gt;&gt;Client: SYN+ACK Client-&gt;&gt;Server: ACK</description>
+    </item>
+    <item>
+      <title>HTTPS通讯流程(基于tls1.2)</title>
+      <link>https://blog.luckyanna.cn/post/2023/howhttpsworks/</link>
+      <pubDate>Mon, 25 Dec 2023 10:55:54 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/howhttpsworks/</guid>
+      <description>HTTPS基于TLS加密传输数据,链路的数据都是加密后的二进制数据 那么HTTPS是如何保证数据不会被破解的呢? 我们来看下HTTPS的整个通讯</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/git/</link>
+    <description>Recent content in Git on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 05 Jan 2016 10:38:49 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>githubConnectionWay</title>
+      <link>https://blog.luckyanna.cn/post/githubconnectionway/</link>
+      <pubDate>Tue, 05 Jan 2016 10:38:49 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/githubconnectionway/</guid>
+      <description>Github https和ssh连接的区别 有个项目在push 一直都需要输入帐号密码，发现原来是因为使用了https来连接； 使用https方式连接的话，.</description>
+    </item>
+  </channel>
+</rss>

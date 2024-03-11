@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Golang垃圾回收 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="Go 的垃圾回收器是基于三色标记清扫算法的，它在运行时进行并发垃圾回收，尽量减少对程序性能的影响。 自 Go 1.5 版本以来，垃圾回收器一直在不断优化。一些" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/2024/1/golang_gc/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Golang垃圾回收" />
+<meta property="og:description" content="Go 的垃圾回收器是基于三色标记清扫算法的，它在运行时进行并发垃圾回收，尽量减少对程序性能的影响。 自 Go 1.5 版本以来，垃圾回收器一直在不断优化。一些" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/2024/1/golang_gc/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-01-19T09:21:21+08:00" />
+<meta property="article:modified_time" content="2024-01-19T09:21:21+08:00" />
+
+<meta itemprop="name" content="Golang垃圾回收">
+<meta itemprop="description" content="Go 的垃圾回收器是基于三色标记清扫算法的，它在运行时进行并发垃圾回收，尽量减少对程序性能的影响。 自 Go 1.5 版本以来，垃圾回收器一直在不断优化。一些"><meta itemprop="datePublished" content="2024-01-19T09:21:21+08:00" />
+<meta itemprop="dateModified" content="2024-01-19T09:21:21+08:00" />
+<meta itemprop="wordCount" content="1694">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Golang垃圾回收"/>
+<meta name="twitter:description" content="Go 的垃圾回收器是基于三色标记清扫算法的，它在运行时进行并发垃圾回收，尽量减少对程序性能的影响。 自 Go 1.5 版本以来，垃圾回收器一直在不断优化。一些"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Golang垃圾回收</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-01-19 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Go 的垃圾回收器是基于三色标记清扫算法的，它在运行时进行并发垃圾回收，尽量减少对程序性能的影响。</p>
+<p>自 Go 1.5 版本以来，垃圾回收器一直在不断优化。一些关键的特性包括：</p>
+<p>并发垃圾回收：大部分的垃圾回收工作是在后台并发进行的，与应用程序的Goroutine同时运行，以减少停顿时间。
+写屏障：用于在并发标记阶段保持程序状态的一致性。
+可调整的垃圾回收目标：程序可以通过设置环境变量 GOGC 来控制垃圾回收的频率。默认情况下，当堆的大小增长到前一次垃圾回收后的两倍时，就会触发下一次垃圾回收。
+从 Go 1.5 到 Go 1.18，Go 团队一直在努力减少垃圾回收对程序性能的影响，特别是在减少 STW（Stop-The-World）暂停时间方面。在最近的版本中，Go 还引入了一些改进，以进一步减少延迟和提高效率，比如：</p>
+<p>改进的写屏障：在更高版本中，Go 改进了写屏障的实现，以减少其开销。
+非均匀处理器访问（NUMA）感知的调度器：这有助于在多处理器系统中改善性能，尽管这与垃圾回收直接相关性较小。
+内存分配器的优化：这包括对小对象分配器的优化和大对象的内存分配方式的改进。</p>
+<p>Go 语言的垃圾回收器使用的是改进的三色标记清扫算法。这个算法的基本思想是将堆中的对象根据其可达性标记为不同的颜色，然后基于这些颜色来确定哪些对象应该被回收。下面是三色标记清扫算法的简化描述：</p>
+<ul>
+<li>初始标记（STW）：
+在垃圾回收开始时，执行一个短暂的停顿（Stop-The-World，STW），此时所有的Goroutines都会停止执行。
+标记所有从根对象（如全局变量、栈上的变量）直接可达的对象为灰色。</li>
+<li>并发标记：
+然后，垃圾回收器并发运行，不影响Goroutines的执行。
+灰色对象会被检查它们的子对象，这些子对象如果是白色的（即未被访问的），则将它们标记为灰色，并继续扫描。
+一旦灰色对象的所有子对象都被扫描过，该对象就会被标记为黑色，表示该对象及其所有子对象都已被访问。
+这个过程会重复，直到没有更多的灰色对象为止。</li>
+<li>写屏障（Write Barrier）：
+在并发标记阶段，程序依然在运行并可能会修改对象图。为了跟踪这些变化，垃圾回收器使用了写屏障技术。
+当程序写入一个对象的时候，写屏障会将任何指向白色对象的引用的黑色对象重新标记为灰色。</li>
+<li>最终标记（STW）：
+在并发标记完成后，执行第二次短暂的STW暂停。
+处理剩余的灰色对象，确保所有存活的对象都已被标记。</li>
+<li>清扫（Sweep）：
+清扫阶段通常是并发执行的，不需要停止应用程序的执行。
+在这个阶段，垃圾回收器会遍历堆，回收那些标记为白色的对象所占用的内存。
+清扫完成后，垃圾回收周期结束。</li>
+</ul>
+<p>Go 语言的垃圾回收机制具有以下优点和缺点：</p>
+<ol>
+<li>优点</li>
+</ol>
+<ul>
+<li>自动内存管理： Go 的自动垃圾回收减轻了开发者管理内存的负担，避免了常见的内存管理错误，如内存泄漏和野指针。</li>
+<li>并发执行： 从 Go 1.5 开始，垃圾回收过程主要是并发进行的，这意味着它可以与用户的Goroutines同时运行，减少程序暂停时间。</li>
+<li>低延迟： Go 垃圾回收器旨在减少STW（Stop-The-World）暂停的时间，以便实现更低的延迟，这对于需要高响应速度的应用程序特别重要。</li>
+<li>可调节性： 开发者可以通过环境变量如 GOGC 来调整垃圾回收的触发时机，从而在性能和内存使用之间寻求平衡。</li>
+<li>内存安全： Go 的内存模型和垃圾回收机制共同提供了内存安全的保证，降低了安全漏洞的风险。</li>
+</ul>
+<ol start="2">
+<li>缺点</li>
+</ol>
+<ul>
+<li>不可预测的暂停时间： 尽管Go努力减少STW暂停时间，但垃圾回收引起的暂停在某些情况下依然可能影响性能，特别是在大规模或者低延迟的系统中。</li>
+<li>内存开销： 自动垃圾回收通常意味着比手动内存管理更高的内存开销。Go 在进行垃圾回收决策时会考虑到总堆大小，并可能保留更多内存以减少垃圾回收的频率。</li>
+<li>CPU开销： 垃圾回收过程虽然是并发进行的，但它仍然会占用CPU资源，这可能对CPU密集型的应用程序造成影响。</li>
+<li>调优复杂性： 虽然Go提供了一些可调节垃圾回收行为的参数，但要优化这些参数以适应特定应用程序的需求可能需要深入理解垃圾回收器的工作原理和应用程序的内存使用模式。</li>
+</ul>
+<p>垃圾回收器的非确定性： 自动垃圾回收的非确定性可能导致应用程序表现出不一致的性能特征，这在需要高度确定性的系统中可能是一个问题。</p>
+
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-01-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/2024/1/btreevsb&#43;tree/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">B树和B&#43;树比较</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2024/1/tcp/">
+            <span class="next-text nav-default">TCP连接相关问题</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

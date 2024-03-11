@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>restfulWebServices3 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="###设计表述 客户端所关心的资源是一个抽象的实体，它是用URI来标识的。另一方面，表述是具体而真实的，你在客户端和服务器上针对它编写代码，进" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/restfulwebservices3/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="restfulWebServices3" />
+<meta property="og:description" content="###设计表述 客户端所关心的资源是一个抽象的实体，它是用URI来标识的。另一方面，表述是具体而真实的，你在客户端和服务器上针对它编写代码，进" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/restfulwebservices3/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2016-01-05T10:41:11+00:00" />
+<meta property="article:modified_time" content="2016-01-05T10:41:11+00:00" />
+
+<meta itemprop="name" content="restfulWebServices3">
+<meta itemprop="description" content="###设计表述 客户端所关心的资源是一个抽象的实体，它是用URI来标识的。另一方面，表述是具体而真实的，你在客户端和服务器上针对它编写代码，进"><meta itemprop="datePublished" content="2016-01-05T10:41:11+00:00" />
+<meta itemprop="dateModified" content="2016-01-05T10:41:11+00:00" />
+<meta itemprop="wordCount" content="1724">
+<meta itemprop="keywords" content="Web,Restful," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="restfulWebServices3"/>
+<meta name="twitter:description" content="###设计表述 客户端所关心的资源是一个抽象的实体，它是用URI来标识的。另一方面，表述是具体而真实的，你在客户端和服务器上针对它编写代码，进"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">restfulWebServices3</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-01-05 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>###设计表述
+客户端所关心的资源是一个抽象的实体，它是用URI来标识的。另一方面，表述是具体而真实的，你在客户端和服务器上针对它编写代码，进行操作。
+HTTP在请求和响应中为表述提供了一种包装格式。设计表述设计：
+1.使用HTTP提供的格式包含正确的标头，
+2.当表述有正文时，为正文选择合适的媒体类型并设计一种格式。</p>
+<p>###如何使用实体头来注解表述
+表述不仅仅是以某种格式序列化后的数据，它是一连串字节加上用于描述那些字节的元数据。在HTTP中，表述元数据是由使用实体头的名值对来实现的。
+使用以下标头来注解包含消息正文的表述：</p>
+<ul>
+<li><code>Conent-Type</code>，用于描述表述类型，包含charset 参数或其他针对该媒体类型而定义的参数。</li>
+<li><code>Content-Length</code>,用于指定表述正文的字节大小。HTTP1.1支持一种更有效的机制，名为分块转移编码（chuncked transfer encoding)</li>
+<li><code>Content-Language</code>,如果您以某种语言对表述进行本地化，用该标头来指定语言。</li>
+<li><code>Content-MD5</code>，工具/软件 在处理或存储表述时，可能存在错误，需要提供一致性校验，用该标头来包含一个表述正文的MD5摘要,在进行内容编码(gzip,compress等）之后，转移编码（即chunked）之前计算摘要值。请注意，TCP使用checksum在传输层提供一致性校验。</li>
+<li><code>Content-Encoding</code>，当你使用gzip，compress或deflate对表述正文进行编码时，使用该标头。</li>
+<li><code>Last-Modified</code> ，用来说明服务器修改表述或资源的最后时间。</li>
+</ul>
+<p>HTTP的设计是这样的，发送方可以用一系列名为实体头的标头来描述表述
+正文（也称为实体正文或消息正文）。有了这些标头，接收方可以在无须查看正文的情况下决定如何处理正文。它们还可以将解析正文所需要提前了解及猜测的内容减到最小程度。</p>
+<p>###如何解释实体头
+当服务器或客户端接受到表述时，在处理请求前正确地解释实体头是很重要的。本节讨论了如何从所包含的标头中解释表述。</p>
+<ul>
+<li><code>Content-Type</code> :接收到不带Content-Type的表述时，客户端将其视为不正确的响应，服务器返回错误码400</li>
+<li><code>Content-Length</code>在没有确定接受到的表述不带Transfer-Encoding：chunked前，不要检查Content-Length头是否存在。</li>
+<li><code>Content-Encoding</code> 让您的网络库代码来解压那些压缩过的表述。</li>
+<li><code>Content-Language</code> 如果存在该标头，读取并存储它的值，记录下所使用的语言。</li>
+</ul>
+<p>###3.6如何设计JSON表述
+在每个表述中，包含一个指向该资源的self链接，对于那些组成资源的应用程序领域实体，在表述中包含它们的标识符。如果表述中的对象是本地化的，添加一个属性来表示本地化内容的语言。</p>
+<p>###如何设计集合表述
+客户端会在集合成员中进行迭代，由于某些集合会包含大量成员资源，客户端需要对集合进行分页或滚动显示，在每个集合表述中包含以下内容：</p>
+<ul>
+<li>一个指向集合资源的self链接</li>
+<li>如果集合是分页的，并且还有下一页，要有一个指向下一页的链接。</li>
+<li>如果集合是分页的，并且还有上一页，要有一个指向上一页的链接。</li>
+<li>一个集合大小的指示符</li>
+</ul>
+<p>###3.11如何在表述中编码二进制数据
+使用multipart/mixed,multipart/related 或multipart/alternative这样的分段媒体类型，避免使用Base64编码将二进制数据与文本格式编码在一起。
+分段消息让你能把不同格式的数据整合到一个HTTP消息中。一个分段消息包含多个消息部分，由边界进行分割，每个部分都可以包含不同媒体类型的消息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">--abcd
+</span></span><span class="line"><span class="cl">Content-type:application/xml;charset=UTF-8
+</span></span><span class="line"><span class="cl">&lt;movie&gt; ... &lt;./movie&gt;
+</span></span><span class="line"><span class="cl">--abcd
+</span></span><span class="line"><span class="cl">Content-type:video/mpeg
+</span></span><span class="line"><span class="cl">&lt;video&gt;&lt;/video&gt;
+</span></span><span class="line"><span class="cl">--abcd--
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该分段消息有两个部分，一部分包含了一个XML文档，另一部分包含一个视频。
+分段媒体类型：
+<code>multipart/form-data </code>   把键值对数据与任意媒体类型的数据编码在一起，与您用HTML表单上传文件时的用法一致。
+<code>multipart/mixed  </code>         分段消息把application/xml表示的电影元数据和video/mpeg表示的视频整合进了一个HTTP消息中
+<code>multipart/alternative   </code>
+<code>multipart/related  </code>      当消息的各个部分是互相关联的，而且需要一起处理这些部分时，使用该媒体类型，第一部分是根，可以通过Content-ID头引用其他部分</p>
+<p>###如何返回错误
+HTTP    基于表述的交换，对于错误来说也是如此，当服务器发生错误时，都会返回一个反映错误在的表述。</p>
+
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-01-05
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/web/">Web</a>
+          <a href="/tags/restful/">Restful</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E9%98%BF%E9%87%8C%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81api/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">阿里短信发送api</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/restfulwebservices2/">
+            <span class="next-text nav-default">restfulWebServices2</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

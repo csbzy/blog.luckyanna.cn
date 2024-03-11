@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>flutter on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/categories/flutter/</link>
+    <description>Recent content in flutter on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 18 Sep 2023 17:14:59 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/categories/flutter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>flutter ffi golang</title>
+      <link>https://blog.luckyanna.cn/post/flutter-ffi-golang/</link>
+      <pubDate>Mon, 18 Sep 2023 17:14:59 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/flutter-ffi-golang/</guid>
+      <description>最近在看一些有趣的flutter项目时，又看到一个Appfolowy的项目，是notion的开源替代版本,主要想解决数据在notion云而不</description>
+    </item>
+  </channel>
+</rss>

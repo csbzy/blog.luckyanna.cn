@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Erlang on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/erlang/</link>
+    <description>Recent content in Erlang on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 08 Mar 2016 17:27:03 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/erlang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>阿里短信发送api</title>
+      <link>https://blog.luckyanna.cn/post/%E9%98%BF%E9%87%8C%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81api/</link>
+      <pubDate>Tue, 08 Mar 2016 17:27:03 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/%E9%98%BF%E9%87%8C%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81api/</guid>
+      <description>阿里大鱼 短信发送接口 alibaba.aliqin.fc.sms.num.send 防坑指南 0x00 吐槽 文档写的已经无力吐槽了，请问您哪里有指出 参数需要 secret了呢？？？ 0x01 注意项 1.md5 sign的生成是字符串 ：</description>
+    </item>
+    <item>
+      <title>io_lib:format 中文乱码探究</title>
+      <link>https://blog.luckyanna.cn/post/different-between-p-and-w-in-io-format/</link>
+      <pubDate>Wed, 09 Dec 2015 11:11:26 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/different-between-p-and-w-in-io-format/</guid>
+      <description>最近发现erlang项目的配置文件某些中文显示会乱码，先说下配置文件的实现： 由file:consult/1读取配置的原始文件（一系列的erl</description>
+    </item>
+    <item>
+      <title>erlang程序优化点</title>
+      <link>https://blog.luckyanna.cn/post/erlangprogram-optimization/</link>
+      <pubDate>Wed, 11 Nov 2015 01:54:26 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/erlangprogram-optimization/</guid>
+      <description>进程标志设置 消息和binary内存：erlang:process_flag(min_bin_vheap_size, 1024*1024)，减少</description>
+    </item>
+    <item>
+      <title>tsung压测restful服务器</title>
+      <link>https://blog.luckyanna.cn/post/tsung%E5%8E%8B%E6%B5%8Brestful%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Fri, 06 Nov 2015 16:18:20 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/tsung%E5%8E%8B%E6%B5%8Brestful%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>android 手机一部 tsung 环境 思路：使用tsung的recorder功能 先记录下app的请求内容(这个可以通过 让手机代理到tsung机器的指定端口），然后</description>
+    </item>
+    <item>
+      <title>Erlang_Efficiency_guide_非标准笔记</title>
+      <link>https://blog.luckyanna.cn/post/erlang-efficiency-guide-%E9%9D%9E%E6%A0%87%E5%87%86%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 24 Oct 2015 14:27:28 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/erlang-efficiency-guide-%E9%9D%9E%E6%A0%87%E5%87%86%E7%AC%94%E8%AE%B0/</guid>
+      <description>Efficiency guide 译文 timer模块 通过erlang:send_after/3 或erlang:start_timer/3 来启动一个定时器会比使用timer</description>
+    </item>
+    <item>
+      <title>Erlang通过NIF集成c代码示例</title>
+      <link>https://blog.luckyanna.cn/post/erlang%E9%80%9A%E8%BF%87nif%E9%9B%86%E6%88%90c%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/</link>
+      <pubDate>Thu, 22 Oct 2015 21:24:21 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/erlang%E9%80%9A%E8%BF%87nif%E9%9B%86%E6%88%90c%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/</guid>
+      <description>ERLANG NIF 编写 很多时候一下计算量大，效率要求很高的地方也许使用c会好于erlang。 Erlang层代码 通过 -on_load模块属性，实现erlan</description>
+    </item>
+    <item>
+      <title>Erlang发送邮件相关问题</title>
+      <link>https://blog.luckyanna.cn/post/erlang%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Thu, 22 Oct 2015 18:22:11 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/erlang%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</guid>
+      <description>Erlang 发送邮件相关问题 协议相关 ===== 一封邮件的发送的协议格式如下： 1 2 3 4 5 6 7 8 9 10 11 12 13 &amp;#34;HELO XXX\r\n&amp;#34; &amp;#34;AUTH LOGIN \r\r&amp;#34; &amp;#34;$Account\r\n&amp;#34; ($Account为账号需要经过base64</description>
+    </item>
+  </channel>
+</rss>

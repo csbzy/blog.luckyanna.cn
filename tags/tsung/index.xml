@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tsung on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/tsung/</link>
+    <description>Recent content in Tsung on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 06 Nov 2015 16:18:20 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/tsung/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tsung压测restful服务器</title>
+      <link>https://blog.luckyanna.cn/post/tsung%E5%8E%8B%E6%B5%8Brestful%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Fri, 06 Nov 2015 16:18:20 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/tsung%E5%8E%8B%E6%B5%8Brestful%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>android 手机一部 tsung 环境 思路：使用tsung的recorder功能 先记录下app的请求内容(这个可以通过 让手机代理到tsung机器的指定端口），然后</description>
+    </item>
+  </channel>
+</rss>

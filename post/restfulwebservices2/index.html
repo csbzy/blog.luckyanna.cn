@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>restfulWebServices2 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="##Restful web Services &amp;mdash;-第 2章 笔记 ###识别资源 开发RESTful Web 服务的首要步骤之一就是设计资源模型，资源模型对所有客户端用来与服务器交互的" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/restfulwebservices2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="restfulWebServices2" />
+<meta property="og:description" content="##Restful web Services &mdash;-第 2章 笔记 ###识别资源 开发RESTful Web 服务的首要步骤之一就是设计资源模型，资源模型对所有客户端用来与服务器交互的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/restfulwebservices2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2016-01-05T10:40:28+00:00" />
+<meta property="article:modified_time" content="2016-01-05T10:40:28+00:00" />
+
+<meta itemprop="name" content="restfulWebServices2">
+<meta itemprop="description" content="##Restful web Services &mdash;-第 2章 笔记 ###识别资源 开发RESTful Web 服务的首要步骤之一就是设计资源模型，资源模型对所有客户端用来与服务器交互的"><meta itemprop="datePublished" content="2016-01-05T10:40:28+00:00" />
+<meta itemprop="dateModified" content="2016-01-05T10:40:28+00:00" />
+<meta itemprop="wordCount" content="1021">
+<meta itemprop="keywords" content="Web,Restful," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="restfulWebServices2"/>
+<meta name="twitter:description" content="##Restful web Services &mdash;-第 2章 笔记 ###识别资源 开发RESTful Web 服务的首要步骤之一就是设计资源模型，资源模型对所有客户端用来与服务器交互的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">restfulWebServices2</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-01-05 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>##Restful web Services &mdash;-第 2章 笔记
+###识别资源
+开发RESTful Web 服务的首要步骤之一就是设计资源模型，资源模型对所有客户端用来与服务器交互的资源加以识别和分类。</p>
+<p>###如何选择资源粒度
+通过网络效率、表达的多少以及客户端的易用程度来帮助确定资源的粒度。
+粗粒度设计便于富客户端应用程序。而更精细的资源粒度可以更好地满足缓存的要求。因此，应从客户端和网络的角度确定资源的粒度。下列因素可能会进一步影响资源粒度：</p>
+<ul>
+<li>可缓存性</li>
+<li>修改频率</li>
+<li>可变性
+仔细设计资源粒度，以确保使用更多缓存，减小修改频率；或将不可变数据从使用缓存较少、修改频率更高或可变数据分离出来，这样可以改善客户端和服务端的效率。</li>
+</ul>
+<p>###如何将资源组织为集合
+将资源组织为集合，可以让客户端及服务器将一组资源视为一个资源来引用，在集合上执行查询，甚至将集合作为工厂来创建新资源。</p>
+<p>基于应用程序特有条件来识别相似的资源，常见的例子有，共享同一数据库<code>Schema</code> 的资源、有相同特性<code>attribute</code>或属性<code>property</code>的资源或客户端看起来是相似的资源。</p>
+<p>###如何支持计算或处理函数
+将处理函数视为一个资源，使用HTTP GET来获取表述，其中包含处理函数输出。使用查询参数来为处理函数提供输入。REST只适用于应用程序领域中的“事物”或“实体”资源，这是对REST架构约束最常见的理解之一。</p>
+<p>###何时及如何使用控制器来操作资源
+就RESTful Web服务而言，控制器能帮助提升服务器与客户端的独立程度，改善网络效率，并让服务器以原子操作的形式来实现复杂操作。控制器是一种能以原子方式修改资源的资源，它能帮助服务器抽象复杂的业务操作，并为客户端提供触发这些操作的途径。</p>
+<p>例子：</p>
+<blockquote>
+<p>客户端向要提供某书的30天免费在线版本，并带有15%折扣。服务器上维护了一个集合，其中包含所有正在提供30天免费访问的图书，客户端可以提交POST请求将该书添加到集合中：</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">#向三十天免费访问图书列表添加图书的请求</span>
+</span></span><span class="line"><span class="cl">POST /30daybookoffers HTTP/1.1
+</span></span><span class="line"><span class="cl">Host: www.example.org
+</span></span><span class="line"><span class="cl">Content-Type:application/x-www-urlencoded
+</span></span><span class="line"><span class="cl"><span class="nv">id</span><span class="o">=</span>1234<span class="p">&amp;</span><span class="nv">from</span><span class="o">=</span>2009-10-10<span class="p">&amp;</span><span class="nv">to</span><span class="o">=</span>2000-11-10
+</span></span><span class="line"><span class="cl"><span class="c1">#响应</span>
+</span></span><span class="line"><span class="cl">HTTP/1.1 <span class="m">201</span> Created
+</span></span><span class="line"><span class="cl">Location: http://www.example.org/30dayebookoffer/1234
+</span></span><span class="line"><span class="cl">Content-length:0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果业务上要求以原子凡是完成这两个修改，那么可以使用控制器资源：即添加折扣及30天免费访问的请求。</p>
+<p>在请求中，参数<code> op=updateDiscount</code>和 <code>op=30dayOffer</code>用来标识操作，这样就会导致穿隧，穿隧会降低协议层面上的可见性，因为请求的可见部分（例如请求URI、使用HTTP方法、请求头和媒体类型）并不会明确地描述操作。要不惜一切代价避免穿隧，针对每个操作使用不同的资源。</p>
+
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-01-05
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/web/">Web</a>
+          <a href="/tags/restful/">Restful</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/restfulwebservices3/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">restfulWebServices3</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/restfulwebservice1/">
+            <span class="next-text nav-default">restfulWebService1</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

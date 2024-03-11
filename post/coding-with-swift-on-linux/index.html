@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>linux下写swift - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="swift 终于开源了，赶紧用linux尝尝鲜。 目前swift支持的linux版本有 ubuntu15.10 和ubuntu 14.04.下面我会用Ubuntu14.04.1来" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/coding-with-swift-on-linux/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="linux下写swift" />
+<meta property="og:description" content="swift 终于开源了，赶紧用linux尝尝鲜。 目前swift支持的linux版本有 ubuntu15.10 和ubuntu 14.04.下面我会用Ubuntu14.04.1来" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/coding-with-swift-on-linux/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2015-12-10T10:42:07+00:00" />
+<meta property="article:modified_time" content="2015-12-10T10:42:07+00:00" />
+
+<meta itemprop="name" content="linux下写swift">
+<meta itemprop="description" content="swift 终于开源了，赶紧用linux尝尝鲜。 目前swift支持的linux版本有 ubuntu15.10 和ubuntu 14.04.下面我会用Ubuntu14.04.1来"><meta itemprop="datePublished" content="2015-12-10T10:42:07+00:00" />
+<meta itemprop="dateModified" content="2015-12-10T10:42:07+00:00" />
+<meta itemprop="wordCount" content="740">
+<meta itemprop="keywords" content="Swift," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="linux下写swift"/>
+<meta name="twitter:description" content="swift 终于开源了，赶紧用linux尝尝鲜。 目前swift支持的linux版本有 ubuntu15.10 和ubuntu 14.04.下面我会用Ubuntu14.04.1来"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">linux下写swift</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-12-10 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#repl">REPL</a></li>
+    <li><a href="#编译swift文件">编译swift文件</a></li>
+    <li><a href="#构建swift程序包">构建swift程序包</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>swift 终于开源了，赶紧用linux尝尝鲜。
+目前swift支持的linux版本有 ubuntu15.10 和ubuntu 14.04.下面我会用Ubuntu14.04.1来尝尝鲜。</p>
+<h1 id="安装">安装</h1>
+<p>具体的手动安装教程可以在swift的<a href="https://github.com/apple/swift">github仓库</a>查看.</p>
+<p>当然，苹果也提供的ubuntu的swift安装包，如果不想折腾就直接下载安装吧：</p>
+<ul>
+<li>使用<code>wget</code>获取安装包：<code>wget https://swift.org/builds/ubuntu1404/swift-2.2-SNAPSHOT-2015-12-01-b/swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04.tar.gz</code></li>
+</ul>
+<p>-解压：<code>tar -zxvf swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04.tar.gz</code></p>
+<p>-添加swift路径到PATH变量： <code>export PATH=/path/to/swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04/usr/bin/:&quot;${PATH}&quot;</code></p>
+<p>-确保所有的swift依赖包都安装了：1. apt-get update  2. sudo apt-get install git cmake ninja-build clang uuid-dev libicu-dev icu-devtools libbsd-dev libedit-dev libxml2-dev libsqlite3-dev swig libpython-dev libncurses5-dev pkg-config</p>
+<p>安装完后输入<code>swift --version</code>会出现版本信息时，那么恭喜你安装成功了，赶紧用swift 去coding一些有趣的东西吧。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">root</span><span class="p">@</span><span class="n">localhost</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">hgfs</span><span class="o">/</span><span class="n">workspace</span><span class="p">#</span> <span class="n">swift</span> <span class="o">--</span><span class="n">version</span>
+</span></span><span class="line"><span class="cl"><span class="n">Swift</span> <span class="n">version</span> <span class="mf">2.2</span><span class="o">-</span><span class="n">dev</span> <span class="p">(</span><span class="n">LLVM</span> <span class="mi">46</span><span class="n">be9ff861</span><span class="p">,</span> <span class="n">Clang</span> <span class="mi">4</span><span class="n">deb154edc</span><span class="p">,</span> <span class="n">Swift</span> <span class="mi">778</span><span class="n">f82939c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Target</span><span class="p">:</span> <span class="n">x86_64</span><span class="o">-</span><span class="n">unknown</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="repl">REPL</h1>
+<p>swift 提供了一个终端 REPL(read eval print loop) 进行交互</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="p">@</span><span class="n">localhost</span><span class="p">:</span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">hgfs</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">mpreader</span><span class="p">#</span> <span class="n">swift</span>
+</span></span><span class="line"><span class="cl"><span class="n">Welcome</span> <span class="n">to</span> <span class="n">Swift</span> <span class="n">version</span> <span class="mf">2.2</span><span class="o">-</span><span class="n">dev</span> <span class="p">(</span><span class="n">LLVM</span> <span class="mi">46</span><span class="n">be9ff861</span><span class="p">,</span> <span class="n">Clang</span> <span class="mi">4</span><span class="n">deb154edc</span><span class="p">,</span> <span class="n">Swift</span> <span class="mi">778</span><span class="n">f82939c</span><span class="p">).</span> <span class="kr">Type</span> <span class="p">:</span><span class="n">help</span> <span class="k">for</span> <span class="n">assistance</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">1</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"> <span class="mi">2</span><span class="p">&gt;</span>  
+</span></span><span class="line"><span class="cl"> <span class="mi">16</span><span class="p">&gt;</span> <span class="kd">let</span> <span class="nv">sum</span> <span class="p">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="n">sum</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="mi">17</span><span class="p">&gt;</span> <span class="k">if</span> <span class="n">sum</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="p">{</span> <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">sum</span><span class="si">)</span><span class="s"> bigger than 10&#34;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl"><span class="mi">44</span> <span class="n">bigger</span> <span class="n">than</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"> <span class="mi">18</span><span class="p">&gt;</span> <span class="k">if</span> <span class="n">sum</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> <span class="mf">19.</span>     <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">sum</span><span class="si">)</span><span class="s"> bigger than 10&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> <span class="mf">20.</span>  
+</span></span><span class="line"><span class="cl"> <span class="mf">21.</span> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="mi">44</span> <span class="n">bigger</span> <span class="n">than</span> <span class="mi">10</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>退出REPL的命令是<code>:q</code></p>
+<h1 id="编译swift文件">编译swift文件</h1>
+<p><code>root@localhost:/mnt/hgfs/workspace# vim testSwift.swift</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">import</span> <span class="nc">Foundation</span>
+</span></span><span class="line"><span class="cl"><span class="kd">import</span> <span class="nc">Glibc</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">player</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;rock&#34;</span><span class="p">,</span> <span class="s">&#34;paper&#34;</span><span class="p">,</span> <span class="s">&#34;scissors&#34;</span><span class="p">,</span> <span class="s">&#34;lizard&#34;</span><span class="p">,</span> <span class="s">&#34;spock&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">srandom</span><span class="p">(</span><span class="nb">UInt32</span><span class="p">(</span><span class="n">NSDate</span><span class="p">().</span><span class="n">timeIntervalSince1970</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="bp">count</span> <span class="k">in</span> <span class="mf">1.</span><span class="p">..</span><span class="mi">3</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="bp">count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="bp">print</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="n">player</span><span class="p">.</span><span class="bp">count</span><span class="p">]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行 <code>swift testSwift.swift</code> 就会执行testSwift.swift文件的内容。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">root@localhost:/mnt/hgfs/workspace# swift main.swift 
+</span></span><span class="line"><span class="cl"><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="m">3</span>
+</span></span><span class="line"><span class="cl">rock
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="构建swift程序包">构建swift程序包</h1>
+<p>swift同时开源了包管理项目，一个swift bao的文件组成如下 ：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">example-package-playingcard 
+</span></span><span class="line"><span class="cl">├── Sources │ 
+</span></span><span class="line"><span class="cl">    ├── PlayingCard.swift │ 
+</span></span><span class="line"><span class="cl">    ├── Rank.swift 
+</span></span><span class="line"><span class="cl">    │ └── Suit.swift 
+</span></span><span class="line"><span class="cl">└── Package.swift
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由源代码文件在<code>source</code>目录下，和 <code>manifest file</code> 文件Package.swift组成，<code>Package.swift</code>就是定义一个package类的实例，用于表述包的基本信息和其依赖的包：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">import</span> <span class="nc">PackageDescription</span> 
+</span></span><span class="line"><span class="cl"><span class="nc">let</span> <span class="nc">package</span> <span class="p">=</span> <span class="nc">Package</span><span class="p">(</span> <span class="nc">name</span><span class="p">:</span> <span class="s">&#34;DeckOfPlayingCards&#34;</span><span class="p">,</span> <span class="nc">targets</span><span class="p">:</span> <span class="p">[],</span> <span class="nc">dependencies</span><span class="p">:</span> <span class="p">[</span> <span class="p">.</span><span class="nc">Package</span><span class="p">(</span><span class="nc">url</span><span class="p">:</span> <span class="s">&#34;https://github.com/apple/example-package-fisheryates.git&#34;</span><span class="p">,</span> <span class="nc">majorVersion</span><span class="p">:</span> <span class="mi">1</span><span class="p">),</span> <span class="p">.</span><span class="nc">Package</span><span class="p">(</span><span class="nc">url</span><span class="p">:</span> <span class="s">&#34;https://github.com/apple/example-package-playingcard.git&#34;</span><span class="p">,</span> <span class="nc">majorVersion</span><span class="p">:</span> <span class="mi">1</span><span class="p">),</span> <span class="p">]</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过<code>swift build</code> 就会编译并且生成包的执行文件 ：<code>./.build/debug/packagename</code></p>
+
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-12-10
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/swift/">Swift</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/githubconnectionway/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">githubConnectionWay</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/different-between-p-and-w-in-io-format/">
+            <span class="next-text nav-default">io_lib:format 中文乱码探究</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

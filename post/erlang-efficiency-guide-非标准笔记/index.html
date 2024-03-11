@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Erlang_Efficiency_guide_非标准笔记 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="Efficiency guide 译文 timer模块 通过erlang:send_after/3 或erlang:start_timer/3 来启动一个定时器会比使用timer" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/erlang-efficiency-guide-%E9%9D%9E%E6%A0%87%E5%87%86%E7%AC%94%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Erlang_Efficiency_guide_非标准笔记" />
+<meta property="og:description" content="Efficiency guide 译文 timer模块 通过erlang:send_after/3 或erlang:start_timer/3 来启动一个定时器会比使用timer" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/erlang-efficiency-guide-%E9%9D%9E%E6%A0%87%E5%87%86%E7%AC%94%E8%AE%B0/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2015-10-24T14:27:28+00:00" />
+<meta property="article:modified_time" content="2015-10-24T14:27:28+00:00" />
+
+<meta itemprop="name" content="Erlang_Efficiency_guide_非标准笔记">
+<meta itemprop="description" content="Efficiency guide 译文 timer模块 通过erlang:send_after/3 或erlang:start_timer/3 来启动一个定时器会比使用timer"><meta itemprop="datePublished" content="2015-10-24T14:27:28+00:00" />
+<meta itemprop="dateModified" content="2015-10-24T14:27:28+00:00" />
+<meta itemprop="wordCount" content="1721">
+<meta itemprop="keywords" content="Erlang," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Erlang_Efficiency_guide_非标准笔记"/>
+<meta name="twitter:description" content="Efficiency guide 译文 timer模块 通过erlang:send_after/3 或erlang:start_timer/3 来启动一个定时器会比使用timer"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Erlang_Efficiency_guide_非标准笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2015-10-24 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#efficiency-guide-译文">Efficiency guide 译文</a></li>
+    <li><a href="#timer模块">timer模块</a></li>
+    <li><a href="#list_to_atom1"><code>list_to_atom/1</code></a></li>
+    <li><a href="#length1"><code>length/1</code></a></li>
+    <li><a href="#setelement3"><code>setelement/3</code></a></li>
+    <li><a href="#size1"><code>size/1</code></a></li>
+    <li><a href="#split_binary2"><code>split_binary/2</code></a></li>
+    <li><a href="#--操作符">&lsquo;&ndash;&lsquo;操作符</a></li>
+    <li><a href="#binaries-是如何被实例化的">binaries 是如何被实例化的</a></li>
+    <li><a href="#构造二进制">构造二进制</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="efficiency-guide-译文">Efficiency guide 译文</h1>
+<h1 id="timer模块">timer模块</h1>
+<p>通过<code>erlang:send_after/3</code> 或<code>erlang:start_timer/3</code> 来启动一个定时器会比使用timer模块更加有效率。timer模块使用一个独立的进程来管理定时器，因此该进程很容易过载，如果很多进程频繁创建或取消定时器。</p>
+<h1 id="list_to_atom1"><code>list_to_atom/1</code></h1>
+<p>Atoms 是不参与垃圾回收的。一旦一个原子被创建，它将不会被回收，Erlang虚拟机会因为atoms数量太多（默认1048576）而导致崩溃。
+因此，转换输入的字符参数变成atom会导致系统变得不安全。如果只允许已经定义的原子可以允许被转换，可以使用 <code>list_to_existing_atom/1</code>去避免服务器崩溃。（这就使得我们需要提前创建所有允许被创建的atiom</p>
+<h1 id="length1"><code>length/1</code></h1>
+<p>执行<code>length/1</code>所消耗的时间是与输入列表的长度成比例增长的。而 <code>erlang:tuple_size/1</code>、<code>byte_size/1</code>、和<code>bit_size/1</code>的执行时间是常量时间。因此避免对长度过长的list进行<code>leng/1</code>运算。一些对<code>length/1</code>的使用可以被替换成模式匹配，比如：
+foo(L) when length(L) &gt;=3 -&gt; &hellip;..
+可以替换为
+foo([<em>,</em>,<em>|</em>]=L)-&gt;&hellip;.
+另外对不使用的变量命名为<code>_</code>也可以提升程序效率。</p>
+<h1 id="setelement3"><code>setelement/3</code></h1>
+<p><code>setelement/3</code>复制它修改的元祖，因此，在循环中调用<code>setelement/3</code>将会每次都创建新的副本。如果无法优化循环调用<code>setelement/3</code>的代码，那么对一个大tuple修改多个元素的最优办法就是将tuple转换为list修改list后再转换会tuple。</p>
+<h1 id="size1"><code>size/1</code></h1>
+<p><code>size/1</code>可以返回tuple或binary的大小。使用 BIFs <code>tuple_size/1</code>和 <code>byte_size/1</code>可以让编译器和运行时系统去优化性能。</p>
+<h1 id="split_binary2"><code>split_binary/2</code></h1>
+<p>通过模式匹配来切分binary会比调用<code>split_binary/2</code>来的快。另外，混合比特语法匹配和split_binary/2 会阻止一些对对比特语法匹配的优化。
+这样：
+&quot;  Bin1:Num/binary,Bin2/binary  &quot; =Bin`
+而不要：
+{Bin1,Bin2}=split_binary(Bin,Num)</p>
+<h1 id="--操作符">&lsquo;&ndash;&lsquo;操作符</h1>
+<p>列表的长度越长，<code>--</code>的效率就越低。
+不要：
+HugeList1 &ndash; HugeList2
+而是这样(对列表元素没有顺序要求的列表使用）：
+HugeSet1 = ordsets:from_list(HugeList1),
+HugeSet2 = ordsets:from_list(HugeList2),
+ordsets:subtract(HugeSet1,HugeSet2)
+对于对列表元素有顺序要求的列表：
+<code>    Set=gb_sets:from_list(HugeList2), [E|| E 《-HugeList1, not gb_sets:is_element(E，Set)]</code></p>
+<h1 id="binaries-是如何被实例化的">binaries 是如何被实例化的</h1>
+<p>在内部来说，binaries和bitstring是一样的东西。
+在虚拟机内部有四种类型的binary对象。有两种包含了binary数据，另外两种仅仅只是引用了binary的一部分。而binary容器是 引用binaries（引用计数binaries的缩写）和堆binaries（heap binaries）。</p>
+<ul>
+<li>Refc binaries 包含两部分：
+1.一个保存在进程堆的（process heap）对象，即ProcBin,所有的ProcBin都是进程链接的一部分，因此gc 会追踪它们，并且在ProcBin消失后减少引用次数。
+2.保存在所有进程堆之外的binary对象，binary对象可以被任意个ProcBins（任意个进程中）引用，它包含了引用计数器用来计算当前引用的数量，当引用数量为0时就会被回收。</li>
+<li>Heap binaries 是小binaries，最大为64字节。所以直接保存在程序的堆中。它将会在进程gc或当作消息发送时被复制，gc不需要任何的处理就可以回收。
+有两种类型的引用对象可以引用 一个refc binary 或 heap binary，它们就是 sub binaries 和 匹配文本。
+sub binaries 由 <code>split_binary/2</code> 创建或者匹配到一个binary时。sun binaries 只是引用了其他binaries的一部分（refc binaries 或heap binary），因此匹配binaries是非常廉价的，因为他不会发生任何的拷贝。
+上下文匹配和sub binary类似，不同的是对binary 匹配做了优化；举个例子，它包含了一个直接指向binary数据的指针。</li>
+</ul>
+<h1 id="构造二进制">构造二进制</h1>
+<p>运行时系统特别对附加binary作了优化，举个例子：
+Bin0= &quot;  0 &ldquo;,  %%为变量Bin0绑定一个heap binary，
+Bin1=&rdquo;  Bin0/binary,1,2,3  &quot;  %%创建一个refc binary 其内容是Bin0的副本，refc binary的ProcBin部分拥有数据的大小（数据存储到二进制中的大小），binary object 却会有额外的空间被开辟，binary object的大小可能是 Bin0的两倍或者是256（或者更大）。
+Bin2 =&quot; Bin1/binary,4,5,6&quot;</p>
+
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2015-10-24
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/erlang/">Erlang</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/mqtt-v1-3-%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MQTT_V1.3_协议详解</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/erlang%E9%80%9A%E8%BF%87nif%E9%9B%86%E6%88%90c%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/">
+            <span class="next-text nav-default">Erlang通过NIF集成c代码示例</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

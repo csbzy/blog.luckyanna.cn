@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>webrtc on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/webrtc/</link>
+    <description>Recent content in webrtc on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 13 Sep 2016 10:02:05 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/webrtc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>webrtc一些笔记</title>
+      <link>https://blog.luckyanna.cn/post/webrtc%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 13 Sep 2016 10:02:05 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/webrtc%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</guid>
+      <description>webrtc一些笔记 基础框架 组成部分： Signalling,客户端session控制，网络和多媒体信息同步的机制。不是RTCPerrConn</description>
+    </item>
+  </channel>
+</rss>

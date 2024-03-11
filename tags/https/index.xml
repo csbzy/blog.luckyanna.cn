@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>https on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/https/</link>
+    <description>Recent content in https on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 25 Dec 2023 10:55:54 +0800</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/https/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTPS通讯流程(基于tls1.2)</title>
+      <link>https://blog.luckyanna.cn/post/2023/howhttpsworks/</link>
+      <pubDate>Mon, 25 Dec 2023 10:55:54 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/howhttpsworks/</guid>
+      <description>HTTPS基于TLS加密传输数据,链路的数据都是加密后的二进制数据 那么HTTPS是如何保证数据不会被破解的呢? 我们来看下HTTPS的整个通讯</description>
+    </item>
+  </channel>
+</rss>

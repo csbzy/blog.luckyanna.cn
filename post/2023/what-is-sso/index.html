@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>单点登陆（SSO）是什么 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="引语 当你清空了浏览器的cookie后，一定遇到过下面的这种糟糕经历： 使用A网站时需要重新登陆，使用B网站是还是需要重新登陆，使用C网站时&amp;h" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/2023/what-is-sso/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="单点登陆（SSO）是什么" />
+<meta property="og:description" content="引语 当你清空了浏览器的cookie后，一定遇到过下面的这种糟糕经历： 使用A网站时需要重新登陆，使用B网站是还是需要重新登陆，使用C网站时&h" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/2023/what-is-sso/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-12-19T16:11:40+08:00" />
+<meta property="article:modified_time" content="2023-12-19T16:11:40+08:00" />
+
+<meta itemprop="name" content="单点登陆（SSO）是什么">
+<meta itemprop="description" content="引语 当你清空了浏览器的cookie后，一定遇到过下面的这种糟糕经历： 使用A网站时需要重新登陆，使用B网站是还是需要重新登陆，使用C网站时&h"><meta itemprop="datePublished" content="2023-12-19T16:11:40+08:00" />
+<meta itemprop="dateModified" content="2023-12-19T16:11:40+08:00" />
+<meta itemprop="wordCount" content="1390">
+<meta itemprop="keywords" content="SSO," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="单点登陆（SSO）是什么"/>
+<meta name="twitter:description" content="引语 当你清空了浏览器的cookie后，一定遇到过下面的这种糟糕经历： 使用A网站时需要重新登陆，使用B网站是还是需要重新登陆，使用C网站时&h"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">单点登陆（SSO）是什么</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-12-19 </span>
+        <div class="post-category">
+            <a href="/categories/system-design/"> system Design </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#引语">引语</a></li>
+        <li><a href="#单点登陆">单点登陆</a>
+          <ul>
+            <li><a href="#不同站点是如何共享token的呢">不同站点是如何共享Token的呢？</a></li>
+            <li><a href="#对于手机应用如何实现sso呢">对于手机应用如何实现SSO呢？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="引语">引语</h2>
+<p>当你清空了浏览器的cookie后，一定遇到过下面的这种糟糕经历：
+使用A网站时需要重新登陆，使用B网站是还是需要重新登陆，使用C网站时&hellip;，如果你没有使用密码管理工具，还需要考验你的记忆力，万一输错了几次，就会丧心病狂的让你回答一些安全问题（小学的名称？宠物的名称？？）遇到这种不支持单点登陆的网站，你不得不问候一下网站管理者。那么当我们在说<code>单点登陆</code>的时候，说的是什么呢？</p>
+<h2 id="单点登陆">单点登陆</h2>
+<p>单点登录（Single Sign-On，SSO）是一种解决方案，可以让用户在多个应用系统中只需登录一次，就可以访问所有相互信任的应用系统。</p>
+<p>下图是描述了单点登陆系统的校验流程，阐述它是怎么运作的。
+<img src="/sso.png" alt="Alt text"></p>
+<ol>
+<li>步骤<code>1</code>，用户浏览Gmail站点时，Gmail发现用户没有登陆，就会重定向到Google的SSO认证服务，如果SSO认证服务发现用户还没登陆，那么就会再次重定向到SSO的登陆页面，在此页面用户可以完成登陆校验</li>
+<li>步骤<code>2-3</code>，SSO认证服务校验用户合法性，并为该用户创建全局session和token.</li>
+<li>步骤<code>4-7</code>，Gmail的服务请求SSO认证服务来校验token的合法性，一旦是合法的token，用户就可以请求访问相应的资源</li>
+<li>步骤<code>8</code>， 用户访问其他Google提供的站点服务，比如YouTube</li>
+<li>步骤<code>9-10</code>，YouTube 发现用户还未登陆，就会请求SSO认证服务，SSO认证服务发现用户已经登陆了，就会返回对应的token给YouTube</li>
+<li>步骤<code>11-14</code>，YouTube通过SSO认证服务校验TOKEN合法性，一旦是合法的TOKEN,用户就可以请求访问相应的YouTube资源</li>
+</ol>
+<h3 id="不同站点是如何共享token的呢">不同站点是如何共享Token的呢？</h3>
+<p>答案就是Cookie：</p>
+<ol>
+<li>应用系统检查当前请求有没有token，如果没有，说明用户在当前系统中尚未登录，那么就将页面跳转至认证中心。</li>
+<li>如果认证中心发现用户尚未登录，则返回登录页面，等待用户登录，登陆成功时将token 写入 Cookie 中。</li>
+<li>如果发现用户已经登录过了，就不会让用户再次登录了，而是会跳转回目标 URL，并在跳转前生成一个 token，拼接在目标 URL 的后面，回传给目标应用系统。</li>
+</ol>
+<h3 id="对于手机应用如何实现sso呢">对于手机应用如何实现SSO呢？</h3>
+<blockquote>
+<p>一种常见的实现方式是，使用 OAuth2 协议来实现单点登录。OAuth2 是一种授权协议，它允许用户授权第三方应用访问他们的资源，而无需将用户名和密码提供给第三方应用。在 OAuth2 中，用户在认证中心进行登录，登录成功后，认证中心会颁发一个访问令牌（Access Token），应用系统可以使用这个访问令牌来访问用户的资源。如果用户在其他应用系统中已经登录过了，那么认证中心会直接颁发访问令牌，无需再次登录。</p>
+</blockquote>
+<h4 id="oauth2授权流程">OAuth2授权流程</h4>
+<pre class="mermaid">
+sequenceDiagram
+    participant 用户
+    participant 客户端
+    participant 认证server
+
+    autonumber
+    用户->客户端: 从客户端获取资源
+    客户端->认证server: 使用用户认证信息获取token
+    认证server->客户端: 跳转到登陆页面
+    用户->认证server: 登陆和认证用户合法性
+    认证server->客户端: 带上authorization code跳转会客户端
+    客户端->认证server: 通过authorization code获取access token
+    认证server->客户端: 返回 access token 金额 refresh token
+    客户端->应用服务端: 通过access token请求保护资源
+    应用服务端->客户端: 返回保护资源
+</pre>
+
+<blockquote>
+<p>文章部分内容参考自bytebytego的<a href="https://bytebytego.com/">SystemDesign</a>,仅用于个人学习记录。</p>
+</blockquote>
+
+      
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-12-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/sso/">SSO</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2023/alg/alg_lengthoflongestsubstring/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">字节算法题-无重复字符的最长子串</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2023/what-is-iaas-paas-saas/">
+            <span class="next-text nav-default">IaaS PaaS SaaS说的是啥？</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

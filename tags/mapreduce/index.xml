@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MapReduce on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/mapreduce/</link>
+    <description>Recent content in MapReduce on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 22 Oct 2015 20:33:37 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/mapreduce/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Riak安装与MapReduce测试</title>
+      <link>https://blog.luckyanna.cn/post/riak%E5%AE%89%E8%A3%85%E4%B8%8Emapreduce%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Thu, 22 Oct 2015 20:33:37 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/riak%E5%AE%89%E8%A3%85%E4%B8%8Emapreduce%E6%B5%8B%E8%AF%95/</guid>
+      <description>Riak安装与MapReduce测试 1.安装环境: Ubuntu 14.04 riak-2.1.1 源码编译 erlang版本R16B03-1(注意 riak目前还不支持R17以上的erl</description>
+    </item>
+  </channel>
+</rss>

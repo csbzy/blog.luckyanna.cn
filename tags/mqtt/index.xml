@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mqtt on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/mqtt/</link>
+    <description>Recent content in mqtt on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 24 Oct 2015 14:34:53 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/mqtt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MQTT_V1.3_协议详解</title>
+      <link>https://blog.luckyanna.cn/post/mqtt-v1-3-%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sat, 24 Oct 2015 14:34:53 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/mqtt-v1-3-%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/</guid>
+      <description>MQTT 协议详解 预览 1 2 3 4 5 6 %% 7 6 5 4 3 2 1 0 byte1 message_type dupflag QoSLV RETAIN byte2 Remaining Length byte3 Variable header byten .... MSG Fixed header（固定头部） 1 2 3 %% 7 6 5 4 3 2 1 0 byte1 message_type dupflag QoSLV RETAIN byte2 Remaining Length m</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>TopK 系统设计 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="TopK问题 TopK问题是常见的排行榜问题,比如youtube浏览量最多的前50个视频,twitter点赞最多的post等等.. 在数据规模比" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/2024/1/topkdesign/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="TopK 系统设计" />
+<meta property="og:description" content="TopK问题 TopK问题是常见的排行榜问题,比如youtube浏览量最多的前50个视频,twitter点赞最多的post等等.. 在数据规模比" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/2024/1/topkdesign/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-01-04T14:25:49+08:00" />
+<meta property="article:modified_time" content="2024-01-04T14:25:49+08:00" />
+
+<meta itemprop="name" content="TopK 系统设计">
+<meta itemprop="description" content="TopK问题 TopK问题是常见的排行榜问题,比如youtube浏览量最多的前50个视频,twitter点赞最多的post等等.. 在数据规模比"><meta itemprop="datePublished" content="2024-01-04T14:25:49+08:00" />
+<meta itemprop="dateModified" content="2024-01-04T14:25:49+08:00" />
+<meta itemprop="wordCount" content="1476">
+<meta itemprop="keywords" content="topK," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="TopK 系统设计"/>
+<meta name="twitter:description" content="TopK问题 TopK问题是常见的排行榜问题,比如youtube浏览量最多的前50个视频,twitter点赞最多的post等等.. 在数据规模比"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">TopK 系统设计</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-01-04 </span>
+        <div class="post-category">
+            <a href="/categories/system-design/"> system design </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#topk问题"><code>TopK</code>问题</a></li>
+            <li><a href="#基于count-min-sketch的方案">基于Count-Min Sketch的方案</a></li>
+            <li><a href="#最终方案">最终方案</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="topk问题"><code>TopK</code>问题</h3>
+<p><code>TopK</code>问题是常见的排行榜问题,比如<code>youtube浏览量最多的前50个视频</code>,<code>twitter点赞最多的post</code>等等..</p>
+<p>在数据规模比较小的时候可以考虑使用最大堆实现,如果需要近实时计算,或者亿级数据规模下就会有性能瓶颈了.</p>
+<h3 id="基于count-min-sketch的方案">基于Count-Min Sketch的方案</h3>
+<p><code>Count-Min Sketch</code>是一种概率数据结构，用于高效地估计数据流中元素的频率。
+<img src="/image_count_min_sketch.png" alt="Alt text"></p>
+<p>Count-Min Sketch的计算流程如下：</p>
+<ol>
+<li>初始化：首先，创建一个二维数组（也称为哈希表或者Sketch），并初始化所有元素为0。这个二维数组有d行，w列，其中d是哈希函数的数量，w是哈希表的大小。</li>
+<li>更新：当一个新的元素x到来时，对每一个哈希函数h_i (i从1到d)，计算哈希值h_i(x)，并将对应的哈希表位置的计数器加1。</li>
+<li>查询：当需要查询一个元素x的频率时，对每一个哈希函数h_i (i从1到d)，计算哈希值h_i(x)，并取所有对应的哈希表位置的计数器的最小值作为频率的估计。</li>
+</ol>
+<p>以下是使用Go语言实现Count-Min Sketch的基本计算流程的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;hash/fnv&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;math&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">CountMinSketch</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">d</span><span class="p">,</span> <span class="nx">w</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">table</span> <span class="p">[][]</span><span class="kt">uint32</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hashes</span> <span class="p">[]</span><span class="nx">hash</span><span class="p">.</span><span class="nx">Hash32</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">NewCountMinSketch</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">w</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">CountMinSketch</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">table</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">uint32</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">table</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">uint32</span><span class="p">,</span> <span class="nx">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hashes</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">hash</span><span class="p">.</span><span class="nx">Hash32</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">hashes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">hashes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">fnv</span><span class="p">.</span><span class="nf">New32</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">CountMinSketch</span><span class="p">{</span><span class="nx">d</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">table</span><span class="p">,</span> <span class="nx">hashes</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">cms</span> <span class="o">*</span><span class="nx">CountMinSketch</span><span class="p">)</span> <span class="nf">Update</span><span class="p">(</span><span class="nx">key</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">h</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">cms</span><span class="p">.</span><span class="nx">hashes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">h</span><span class="p">.</span><span class="nf">Reset</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">h</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">index</span> <span class="o">:=</span> <span class="nx">h</span><span class="p">.</span><span class="nf">Sum32</span><span class="p">()</span> <span class="o">%</span> <span class="nb">uint32</span><span class="p">(</span><span class="nx">cms</span><span class="p">.</span><span class="nx">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">cms</span><span class="p">.</span><span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">index</span><span class="p">]</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">cms</span> <span class="o">*</span><span class="nx">CountMinSketch</span><span class="p">)</span> <span class="nf">Estimate</span><span class="p">(</span><span class="nx">key</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">uint32</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">min</span> <span class="o">:=</span> <span class="nb">uint32</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nx">MaxUint32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">h</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">cms</span><span class="p">.</span><span class="nx">hashes</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">h</span><span class="p">.</span><span class="nf">Reset</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">h</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">index</span> <span class="o">:=</span> <span class="nx">h</span><span class="p">.</span><span class="nf">Sum32</span><span class="p">()</span> <span class="o">%</span> <span class="nb">uint32</span><span class="p">(</span><span class="nx">cms</span><span class="p">.</span><span class="nx">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">cms</span><span class="p">.</span><span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">index</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">min</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">min</span> <span class="p">=</span> <span class="nx">cms</span><span class="p">.</span><span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">min</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Usage example
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">cms</span> <span class="o">:=</span> <span class="nf">NewCountMinSketch</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cms</span><span class="p">.</span><span class="nf">Update</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cms</span><span class="p">.</span><span class="nf">Update</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;world&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">println</span><span class="p">(</span><span class="nx">cms</span><span class="p">.</span><span class="nf">Estimate</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">println</span><span class="p">(</span><span class="nx">cms</span><span class="p">.</span><span class="nf">Estimate</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;world&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>count-min sketch</code>只是是一种概率数据结构，用于高效地估计数据流中元素的频率。然而，它本身并不能直接找到前K个频率最高的元素。为了找到前K个频率最高的元素，我们需要结合使用其他数据结构，例如优先队列（Priority Queue）。</p>
+<p>以下是一个基本的步骤：</p>
+<ol>
+<li>首先，我们使用Count-Min Sketch来处理数据流，为每个元素计算其频率的估计值。</li>
+<li>然后，我们使用一个大小为K的优先队列来跟踪频率最高的K个元素。优先队列中的元素按照其频率的估计值排序，频率最低的元素位于队列的顶部。</li>
+<li>当我们遇到一个新的元素时，我们首先使用Count-Min Sketch来计算其频率的估计值。然后，我们将这个元素和优先队列顶部的元素进行比较。如果新元素的频率更高，我们就将队列顶部的元素移除，并将新元素添加到队列中。</li>
+<li>最后，优先队列中的K个元素就是频率最高的K个元素。</li>
+</ol>
+<p>这种方法的优点是，它可以在处理大规模数据流的情况下，以较小的内存和计算开销找到频率最高的K个元素。然而，由于<code>Count-Min Sketch</code>是一种概率数据结构，所以这种方法可能会有一定的误差。</p>
+<h3 id="最终方案">最终方案</h3>
+<p>在分布式系统中使用Count-Min Sketch，各节点每1分钟生成一个Count-Min Sketch,并有一个聚合服务每一分钟就聚合一次所有结点上的最小堆数据,生成每分钟的topK,：</p>
+<ol>
+<li>数据分布：你可以选择将数据流分布到各个节点。这可以通过哈希函数实现，例如，你可以使用数据元素的哈希值对节点数量取模，来决定将数据元素发送到哪个节点。</li>
+<li>在每个节点上使用Count-Min Sketch：每个节点接收到数据元素后，使用Count-Min Sketch来计算元素的频率。每个节点都会维护一个自己的Count-Min Sketch数据结构。</li>
+<li>结果合并：当需要获取全局的频率估计时，你需要合并各个节点的Count-Min Sketch。由于Count-Min Sketch的结构是一个二维表格，你可以通过将同一位置的计数器相加，来合并各个节点的Count-Min Sketch。</li>
+</ol>
+<p><img src="/image_topk_system.png" alt="Alt text"></p>
+<p>参考</p>
+<ol>
+<li><a href="https://www.youtube.com/watch?v=1eqFK49XTl8">Top K Problem System Design</a></li>
+</ol>
+
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-01-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/topk/">topK</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2024/1/select_poll_epoll/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">IO多路复用select,poll,epoll的区别</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2023/howhttpsworks/">
+            <span class="next-text nav-default">HTTPS通讯流程(基于tls1.2)</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

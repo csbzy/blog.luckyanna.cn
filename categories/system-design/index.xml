@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>system Design on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/categories/system-design/</link>
+    <description>Recent content in system Design on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 04 Jan 2024 14:25:49 +0800</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/categories/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TopK 系统设计</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/topkdesign/</link>
+      <pubDate>Thu, 04 Jan 2024 14:25:49 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/topkdesign/</guid>
+      <description>TopK问题 TopK问题是常见的排行榜问题,比如youtube浏览量最多的前50个视频,twitter点赞最多的post等等.. 在数据规模比</description>
+    </item>
+    <item>
+      <title>单点登陆（SSO）是什么</title>
+      <link>https://blog.luckyanna.cn/post/2023/what-is-sso/</link>
+      <pubDate>Tue, 19 Dec 2023 16:11:40 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/what-is-sso/</guid>
+      <description>引语 当你清空了浏览器的cookie后，一定遇到过下面的这种糟糕经历： 使用A网站时需要重新登陆，使用B网站是还是需要重新登陆，使用C网站时&amp;h</description>
+    </item>
+    <item>
+      <title>IaaS PaaS SaaS说的是啥？</title>
+      <link>https://blog.luckyanna.cn/post/2023/what-is-iaas-paas-saas/</link>
+      <pubDate>Tue, 19 Dec 2023 15:33:51 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/what-is-iaas-paas-saas/</guid>
+      <description>下面这张图清晰表达出IasS(基础设施即服务)，PaaS(平台即服务)和SaaS(软件即服务)三者之间的区别 对于非云上的应用来说，我们需要自</description>
+    </item>
+    <item>
+      <title>数据库隔离级别</title>
+      <link>https://blog.luckyanna.cn/post/database-isolation/</link>
+      <pubDate>Wed, 13 Dec 2023 09:10:14 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/database-isolation/</guid>
+      <description>数据库隔离级别 隔离级别决定了事务的完整性对其他用户和系统的可见性。较低的隔离级别增加了许多用户在同一时间访问相同数据的能力，但也增加了用户可</description>
+    </item>
+  </channel>
+</rss>

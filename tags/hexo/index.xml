@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hexo on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/hexo/</link>
+    <description>Recent content in hexo on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 27 Oct 2015 02:37:11 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hexo的archive分页问题</title>
+      <link>https://blog.luckyanna.cn/post/hexo%E7%9A%84archive%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 27 Oct 2015 02:37:11 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/hexo%E7%9A%84archive%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/</guid>
+      <description>在配置hexo的过程中，希望的效果是首页的文章分页，然后 archives和tags的文章不分页。 开始以为是主题的代码实现bug，蒙头去改。后</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>topK on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/topk/</link>
+    <description>Recent content in topK on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 04 Jan 2024 14:25:49 +0800</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/topk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TopK 系统设计</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/topkdesign/</link>
+      <pubDate>Thu, 04 Jan 2024 14:25:49 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/topkdesign/</guid>
+      <description>TopK问题 TopK问题是常见的排行榜问题,比如youtube浏览量最多的前50个视频,twitter点赞最多的post等等.. 在数据规模比</description>
+    </item>
+  </channel>
+</rss>

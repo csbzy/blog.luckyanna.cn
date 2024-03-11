@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/golang/</link>
+    <description>Recent content in golang on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 16 Aug 2016 15:39:41 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>goa请求处理解析</title>
+      <link>https://blog.luckyanna.cn/post/goa%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Tue, 16 Aug 2016 15:39:41 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/goa%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E8%A7%A3%E6%9E%90/</guid>
+      <description>1. 入口 app.MountXXXController -&amp;gt; service.Mux.Handle(&amp;quot;GET&amp;quot;, &amp;quot;/add/:left/:right&amp;quot;, ctrl.MuxHandler(&amp;quot;Add&amp;quot;, h, nil)) -&amp;gt; ctrl.MuxHandler(&amp;quot;Add&amp;quot;, h, nil) 在 ctrl.MuxHandler(&amp;quot;Add&amp;quot;, h, nil) 中返回一个 先Invoke用户实现的对应请求的逻辑方法,再依次Invoke middleware 的函数： 1 2 3 4 5 6 7 8 9 10 11</description>
+    </item>
+  </channel>
+</rss>

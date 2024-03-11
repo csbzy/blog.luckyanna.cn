@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/post/</link>
+    <description>Recent content in Posts on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 19 Jan 2024 11:32:25 +0800</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang逃逸分析出现的几种情况</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/go_escape_analytic/</link>
+      <pubDate>Fri, 19 Jan 2024 11:32:25 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/go_escape_analytic/</guid>
+      <description>在Go语言中，逃逸分析是编译时的一个过程，用来分析变量分配在栈上还是堆上。如果一个变量在函数外部仍然可以访问，那么这个变量就会从栈上“逃逸”</description>
+    </item>
+    <item>
+      <title>B树和B&#43;树比较</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/btreevsb&#43;tree/</link>
+      <pubDate>Fri, 19 Jan 2024 10:45:00 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/btreevsb&#43;tree/</guid>
+      <description>B 树 和 B+ 树的区别，为什么 mysql 要用 B+ 树，mongodb 要用 B 树。 B树（B-Tree）和B+树都是平衡树数据结构，它们被设计用于读写大量数据的存储</description>
+    </item>
+    <item>
+      <title>Golang垃圾回收</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/golang_gc/</link>
+      <pubDate>Fri, 19 Jan 2024 09:21:21 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/golang_gc/</guid>
+      <description>Go 的垃圾回收器是基于三色标记清扫算法的，它在运行时进行并发垃圾回收，尽量减少对程序性能的影响。 自 Go 1.5 版本以来，垃圾回收器一直在不断优化。一些</description>
+    </item>
+    <item>
+      <title>TCP连接相关问题</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/tcp/</link>
+      <pubDate>Thu, 18 Jan 2024 16:02:59 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/tcp/</guid>
+      <description>TCP 连接建立,断开过程 TCP的三次握手是建立TCP连接的过程,下面是TCP连接三次握手和断开四次挥手过程的状态机流程图： sequenceDiagram participant Client participant Server Client-&gt;&gt;Server: SYN Server--&gt;&gt;Client: SYN+ACK Client-&gt;&gt;Server: ACK</description>
+    </item>
+    <item>
+      <title>IO多路复用select,poll,epoll的区别</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/select_poll_epoll/</link>
+      <pubDate>Thu, 18 Jan 2024 15:36:40 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/select_poll_epoll/</guid>
+      <description>select, poll, 和 epoll 都是用于处理多路输入输出（IO）的系统调用，它们允许程序监视多个文件描述符（FDs），等待一个或多个FDs成为非阻塞的，即准备好进行</description>
+    </item>
+    <item>
+      <title>TopK 系统设计</title>
+      <link>https://blog.luckyanna.cn/post/2024/1/topkdesign/</link>
+      <pubDate>Thu, 04 Jan 2024 14:25:49 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2024/1/topkdesign/</guid>
+      <description>TopK问题 TopK问题是常见的排行榜问题,比如youtube浏览量最多的前50个视频,twitter点赞最多的post等等.. 在数据规模比</description>
+    </item>
+    <item>
+      <title>HTTPS通讯流程(基于tls1.2)</title>
+      <link>https://blog.luckyanna.cn/post/2023/howhttpsworks/</link>
+      <pubDate>Mon, 25 Dec 2023 10:55:54 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/howhttpsworks/</guid>
+      <description>HTTPS基于TLS加密传输数据,链路的数据都是加密后的二进制数据 那么HTTPS是如何保证数据不会被破解的呢? 我们来看下HTTPS的整个通讯</description>
+    </item>
+    <item>
+      <title>字节算法题-无重复字符的最长子串</title>
+      <link>https://blog.luckyanna.cn/post/2023/alg/alg_lengthoflongestsubstring/</link>
+      <pubDate>Thu, 21 Dec 2023 10:36:41 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/alg/alg_lengthoflongestsubstring/</guid>
+      <description>无重复字符的最长子串 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1: 输入: s =</description>
+    </item>
+    <item>
+      <title>单点登陆（SSO）是什么</title>
+      <link>https://blog.luckyanna.cn/post/2023/what-is-sso/</link>
+      <pubDate>Tue, 19 Dec 2023 16:11:40 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/what-is-sso/</guid>
+      <description>引语 当你清空了浏览器的cookie后，一定遇到过下面的这种糟糕经历： 使用A网站时需要重新登陆，使用B网站是还是需要重新登陆，使用C网站时&amp;h</description>
+    </item>
+    <item>
+      <title>IaaS PaaS SaaS说的是啥？</title>
+      <link>https://blog.luckyanna.cn/post/2023/what-is-iaas-paas-saas/</link>
+      <pubDate>Tue, 19 Dec 2023 15:33:51 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/what-is-iaas-paas-saas/</guid>
+      <description>下面这张图清晰表达出IasS(基础设施即服务)，PaaS(平台即服务)和SaaS(软件即服务)三者之间的区别 对于非云上的应用来说，我们需要自</description>
+    </item>
+    <item>
+      <title>fn call(&amp;self, param: T) -&gt; R 解析</title>
+      <link>https://blog.luckyanna.cn/post/2023/rust-handler-trait/</link>
+      <pubDate>Mon, 18 Dec 2023 22:52:19 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/rust-handler-trait/</guid>
+      <description>代码解析 1 2 3 pub trait Handler&amp;lt;T, R&amp;gt; { fn call(&amp;amp;self, param: T) -&amp;gt; R; } Handler trait定义了一个方法call，它接收一个类型为T的参数，并返回一个类型为R的值。&amp;amp;sel</description>
+    </item>
+    <item>
+      <title>数据库隔离级别</title>
+      <link>https://blog.luckyanna.cn/post/database-isolation/</link>
+      <pubDate>Wed, 13 Dec 2023 09:10:14 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/database-isolation/</guid>
+      <description>数据库隔离级别 隔离级别决定了事务的完整性对其他用户和系统的可见性。较低的隔离级别增加了许多用户在同一时间访问相同数据的能力，但也增加了用户可</description>
+    </item>
+    <item>
+      <title>flutter ffi golang</title>
+      <link>https://blog.luckyanna.cn/post/flutter-ffi-golang/</link>
+      <pubDate>Mon, 18 Sep 2023 17:14:59 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/flutter-ffi-golang/</guid>
+      <description>最近在看一些有趣的flutter项目时，又看到一个Appfolowy的项目，是notion的开源替代版本,主要想解决数据在notion云而不</description>
+    </item>
+    <item>
+      <title>webrtc一些笔记</title>
+      <link>https://blog.luckyanna.cn/post/webrtc%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 13 Sep 2016 10:02:05 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/webrtc%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/</guid>
+      <description>webrtc一些笔记 基础框架 组成部分： Signalling,客户端session控制，网络和多媒体信息同步的机制。不是RTCPerrConn</description>
+    </item>
+    <item>
+      <title>goa请求处理解析</title>
+      <link>https://blog.luckyanna.cn/post/goa%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Tue, 16 Aug 2016 15:39:41 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/goa%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E8%A7%A3%E6%9E%90/</guid>
+      <description>1. 入口 app.MountXXXController -&amp;gt; service.Mux.Handle(&amp;quot;GET&amp;quot;, &amp;quot;/add/:left/:right&amp;quot;, ctrl.MuxHandler(&amp;quot;Add&amp;quot;, h, nil)) -&amp;gt; ctrl.MuxHandler(&amp;quot;Add&amp;quot;, h, nil) 在 ctrl.MuxHandler(&amp;quot;Add&amp;quot;, h, nil) 中返回一个 先Invoke用户实现的对应请求的逻辑方法,再依次Invoke middleware 的函数： 1 2 3 4 5 6 7 8 9 10 11</description>
+    </item>
+    <item>
+      <title>阿里短信发送api</title>
+      <link>https://blog.luckyanna.cn/post/%E9%98%BF%E9%87%8C%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81api/</link>
+      <pubDate>Tue, 08 Mar 2016 17:27:03 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/%E9%98%BF%E9%87%8C%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81api/</guid>
+      <description>阿里大鱼 短信发送接口 alibaba.aliqin.fc.sms.num.send 防坑指南 0x00 吐槽 文档写的已经无力吐槽了，请问您哪里有指出 参数需要 secret了呢？？？ 0x01 注意项 1.md5 sign的生成是字符串 ：</description>
+    </item>
+    <item>
+      <title>restfulWebServices3</title>
+      <link>https://blog.luckyanna.cn/post/restfulwebservices3/</link>
+      <pubDate>Tue, 05 Jan 2016 10:41:11 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/restfulwebservices3/</guid>
+      <description>###设计表述 客户端所关心的资源是一个抽象的实体，它是用URI来标识的。另一方面，表述是具体而真实的，你在客户端和服务器上针对它编写代码，进</description>
+    </item>
+    <item>
+      <title>restfulWebServices2</title>
+      <link>https://blog.luckyanna.cn/post/restfulwebservices2/</link>
+      <pubDate>Tue, 05 Jan 2016 10:40:28 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/restfulwebservices2/</guid>
+      <description>##Restful web Services &amp;mdash;-第 2章 笔记 ###识别资源 开发RESTful Web 服务的首要步骤之一就是设计资源模型，资源模型对所有客户端用来与服务器交互的</description>
+    </item>
+    <item>
+      <title>restfulWebService1</title>
+      <link>https://blog.luckyanna.cn/post/restfulwebservice1/</link>
+      <pubDate>Tue, 05 Jan 2016 10:39:43 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/restfulwebservice1/</guid>
+      <description>###REST(表述性状态转移） HTTP 的设计 目标是在客户端和服务器之间对库、服务器、代理、缓存和其他工具的可见性。可见性是：一个组件能够对其他两</description>
+    </item>
+    <item>
+      <title>githubConnectionWay</title>
+      <link>https://blog.luckyanna.cn/post/githubconnectionway/</link>
+      <pubDate>Tue, 05 Jan 2016 10:38:49 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/githubconnectionway/</guid>
+      <description>Github https和ssh连接的区别 有个项目在push 一直都需要输入帐号密码，发现原来是因为使用了https来连接； 使用https方式连接的话，.</description>
+    </item>
+    <item>
+      <title>linux下写swift</title>
+      <link>https://blog.luckyanna.cn/post/coding-with-swift-on-linux/</link>
+      <pubDate>Thu, 10 Dec 2015 10:42:07 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/coding-with-swift-on-linux/</guid>
+      <description>swift 终于开源了，赶紧用linux尝尝鲜。 目前swift支持的linux版本有 ubuntu15.10 和ubuntu 14.04.下面我会用Ubuntu14.04.1来</description>
+    </item>
+    <item>
+      <title>io_lib:format 中文乱码探究</title>
+      <link>https://blog.luckyanna.cn/post/different-between-p-and-w-in-io-format/</link>
+      <pubDate>Wed, 09 Dec 2015 11:11:26 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/different-between-p-and-w-in-io-format/</guid>
+      <description>最近发现erlang项目的配置文件某些中文显示会乱码，先说下配置文件的实现： 由file:consult/1读取配置的原始文件（一系列的erl</description>
+    </item>
+    <item>
+      <title>Nginx配置</title>
+      <link>https://blog.luckyanna.cn/post/nginx%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 16 Nov 2015 11:50:57 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/nginx%E9%85%8D%E7%BD%AE/</guid>
+      <description>Nginx配置文件详细说明 在此记录下Nginx服务器nginx.conf的配置文件说明, 部分注释收集与网络. #运行用户 user www-data; #启动进程,通常设</description>
+    </item>
+    <item>
+      <title>erlang程序优化点</title>
+      <link>https://blog.luckyanna.cn/post/erlangprogram-optimization/</link>
+      <pubDate>Wed, 11 Nov 2015 01:54:26 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/erlangprogram-optimization/</guid>
+      <description>进程标志设置 消息和binary内存：erlang:process_flag(min_bin_vheap_size, 1024*1024)，减少</description>
+    </item>
+    <item>
+      <title>tsung压测restful服务器</title>
+      <link>https://blog.luckyanna.cn/post/tsung%E5%8E%8B%E6%B5%8Brestful%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Fri, 06 Nov 2015 16:18:20 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/tsung%E5%8E%8B%E6%B5%8Brestful%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>android 手机一部 tsung 环境 思路：使用tsung的recorder功能 先记录下app的请求内容(这个可以通过 让手机代理到tsung机器的指定端口），然后</description>
+    </item>
+    <item>
+      <title>hexo的archive分页问题</title>
+      <link>https://blog.luckyanna.cn/post/hexo%E7%9A%84archive%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 27 Oct 2015 02:37:11 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/hexo%E7%9A%84archive%E5%88%86%E9%A1%B5%E9%97%AE%E9%A2%98/</guid>
+      <description>在配置hexo的过程中，希望的效果是首页的文章分页，然后 archives和tags的文章不分页。 开始以为是主题的代码实现bug，蒙头去改。后</description>
+    </item>
+    <item>
+      <title>MQTT_V1.3_协议详解</title>
+      <link>https://blog.luckyanna.cn/post/mqtt-v1-3-%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sat, 24 Oct 2015 14:34:53 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/mqtt-v1-3-%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/</guid>
+      <description>MQTT 协议详解 预览 1 2 3 4 5 6 %% 7 6 5 4 3 2 1 0 byte1 message_type dupflag QoSLV RETAIN byte2 Remaining Length byte3 Variable header byten .... MSG Fixed header（固定头部） 1 2 3 %% 7 6 5 4 3 2 1 0 byte1 message_type dupflag QoSLV RETAIN byte2 Remaining Length m</description>
+    </item>
+    <item>
+      <title>Erlang_Efficiency_guide_非标准笔记</title>
+      <link>https://blog.luckyanna.cn/post/erlang-efficiency-guide-%E9%9D%9E%E6%A0%87%E5%87%86%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 24 Oct 2015 14:27:28 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/erlang-efficiency-guide-%E9%9D%9E%E6%A0%87%E5%87%86%E7%AC%94%E8%AE%B0/</guid>
+      <description>Efficiency guide 译文 timer模块 通过erlang:send_after/3 或erlang:start_timer/3 来启动一个定时器会比使用timer</description>
+    </item>
+    <item>
+      <title>Erlang通过NIF集成c代码示例</title>
+      <link>https://blog.luckyanna.cn/post/erlang%E9%80%9A%E8%BF%87nif%E9%9B%86%E6%88%90c%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/</link>
+      <pubDate>Thu, 22 Oct 2015 21:24:21 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/erlang%E9%80%9A%E8%BF%87nif%E9%9B%86%E6%88%90c%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/</guid>
+      <description>ERLANG NIF 编写 很多时候一下计算量大，效率要求很高的地方也许使用c会好于erlang。 Erlang层代码 通过 -on_load模块属性，实现erlan</description>
+    </item>
+    <item>
+      <title>Riak安装与MapReduce测试</title>
+      <link>https://blog.luckyanna.cn/post/riak%E5%AE%89%E8%A3%85%E4%B8%8Emapreduce%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Thu, 22 Oct 2015 20:33:37 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/riak%E5%AE%89%E8%A3%85%E4%B8%8Emapreduce%E6%B5%8B%E8%AF%95/</guid>
+      <description>Riak安装与MapReduce测试 1.安装环境: Ubuntu 14.04 riak-2.1.1 源码编译 erlang版本R16B03-1(注意 riak目前还不支持R17以上的erl</description>
+    </item>
+    <item>
+      <title>ejabberd_receiver分析</title>
+      <link>https://blog.luckyanna.cn/post/ejabberd-receiver%E5%88%86%E6%9E%90/</link>
+      <pubDate>Thu, 22 Oct 2015 20:10:51 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/ejabberd-receiver%E5%88%86%E6%9E%90/</guid>
+      <description>ejabberd_receiver 分析 ejabberd_receiver是ejabberd 中 网关层的数据receive模块，客户端发送的数据通过ejabberd_recei</description>
+    </item>
+    <item>
+      <title>Cowboy的路由机制</title>
+      <link>https://blog.luckyanna.cn/post/cowboy%E7%9A%84%E8%B7%AF%E7%94%B1%E6%9C%BA%E5%88%B6/</link>
+      <pubDate>Thu, 22 Oct 2015 18:24:56 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/cowboy%E7%9A%84%E8%B7%AF%E7%94%B1%E6%9C%BA%E5%88%B6/</guid>
+      <description>路由机制 配置链接URL到Erlang模块（处理对应请求的模块）的映射就是路由。 当 Cowboy接收到一个请求时，它会尝试在给定的分发规则中匹配</description>
+    </item>
+    <item>
+      <title>Erlang发送邮件相关问题</title>
+      <link>https://blog.luckyanna.cn/post/erlang%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Thu, 22 Oct 2015 18:22:11 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/erlang%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</guid>
+      <description>Erlang 发送邮件相关问题 协议相关 ===== 一封邮件的发送的协议格式如下： 1 2 3 4 5 6 7 8 9 10 11 12 13 &amp;#34;HELO XXX\r\n&amp;#34; &amp;#34;AUTH LOGIN \r\r&amp;#34; &amp;#34;$Account\r\n&amp;#34; ($Account为账号需要经过base64</description>
+    </item>
+  </channel>
+</rss>

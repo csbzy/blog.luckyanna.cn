@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/nginx/</link>
+    <description>Recent content in Nginx on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 16 Nov 2015 11:50:57 +0000</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx配置</title>
+      <link>https://blog.luckyanna.cn/post/nginx%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 16 Nov 2015 11:50:57 +0000</pubDate>
+      <guid>https://blog.luckyanna.cn/post/nginx%E9%85%8D%E7%BD%AE/</guid>
+      <description>Nginx配置文件详细说明 在此记录下Nginx服务器nginx.conf的配置文件说明, 部分注释收集与网络. #运行用户 user www-data; #启动进程,通常设</description>
+    </item>
+  </channel>
+</rss>

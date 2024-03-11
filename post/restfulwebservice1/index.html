@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>restfulWebService1 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="###REST(表述性状态转移） HTTP 的设计 目标是在客户端和服务器之间对库、服务器、代理、缓存和其他工具的可见性。可见性是：一个组件能够对其他两" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/restfulwebservice1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="restfulWebService1" />
+<meta property="og:description" content="###REST(表述性状态转移） HTTP 的设计 目标是在客户端和服务器之间对库、服务器、代理、缓存和其他工具的可见性。可见性是：一个组件能够对其他两" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/restfulwebservice1/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2016-01-05T10:39:43+00:00" />
+<meta property="article:modified_time" content="2016-01-05T10:39:43+00:00" />
+
+<meta itemprop="name" content="restfulWebService1">
+<meta itemprop="description" content="###REST(表述性状态转移） HTTP 的设计 目标是在客户端和服务器之间对库、服务器、代理、缓存和其他工具的可见性。可见性是：一个组件能够对其他两"><meta itemprop="datePublished" content="2016-01-05T10:39:43+00:00" />
+<meta itemprop="dateModified" content="2016-01-05T10:39:43+00:00" />
+<meta itemprop="wordCount" content="1652">
+<meta itemprop="keywords" content="Web,Restful," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="restfulWebService1"/>
+<meta name="twitter:description" content="###REST(表述性状态转移） HTTP 的设计 目标是在客户端和服务器之间对库、服务器、代理、缓存和其他工具的可见性。可见性是：一个组件能够对其他两"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">restfulWebService1</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-01-05 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>###REST(表述性状态转移）</p>
+<p>HTTP 的设计 目标是在客户端和服务器之间对库、服务器、代理、缓存和其他工具的可见性。可见性是：一个组件能够对其他两个组件之间的交互进行监视或仲裁的能力。当协议是可见的时，缓存、代理、防火墙等组件既可以监视甚至参与其中。</p>
+<p>HTTP 通过以下途径来实现可见性：</p>
+<blockquote>
+<ul>
+<li>HTTP的交互是无状态的，任何HTTP中介都可以推断出给定请求和响应的意义，而无须关联过去或将来的请求和响应。</li>
+</ul>
+</blockquote>
+<ul>
+<li>HTTP使用一个统一接口，包括有OPTIONS，GET，HEAD,POST,DELETE和TRACE方法。接口中的每一个方   法操作一个且仅有一个资源。每个方法的语法和含义不会因应用程序或资源的不同而发生改变。</li>
+<li>HTTP使用一种与MIME类似的信封格式进行表述编码。这个格式明确区分标头和内容。</li>
+</ul>
+<p>一个HTTP请求的格式：
+请求行：HTTP方法  资源路径  HTTP版本
+请求的表述形式表头：<code>Content-Type：...</code>
+请求的表述内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /api/bookclubserver/note/comment_text/put HTTP/1.1\r\n
+</span></span><span class="line"><span class="cl">User-Agent: curl/7.35.0\r\n
+</span></span><span class="line"><span class="cl">Host: localhost:8080\r\n
+</span></span><span class="line"><span class="cl">Accept: */*\r\n
+</span></span><span class="line"><span class="cl">content-type: application/json\r\n
+</span></span><span class="line"><span class="cl">Content-Length: 157\r\n\r\n
+</span></span><span class="line"><span class="cl">{ \&#34;note_id\&#34;:\&#34;201505080931476889\&#34;,\&#34;user_id\&#34;:\&#34;201504171121428216\&#34;,\&#34;note_comment_content\&#34;:\&#34;Is luck to meet you!\&#34;,\&#34;p_note_comment_id\&#34;:\&#34;-1\&#34;,\&#34;p_note_user_id\&#34;:\&#34;-1\&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一个HTTP响应的格式：
+响应行：HTTP版本  状态码  状态消息
+响应的表述形式标头：
+响应的表述内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">connection: keep-alive
+</span></span><span class="line"><span class="cl">server: Cowboy
+</span></span><span class="line"><span class="cl">date: Fri,T08+00:00
+</span></span><span class="line"><span class="cl">content-length: 61
+</span></span><span class="line"><span class="cl">content-type: text/html
+</span></span><span class="line"><span class="cl">{&#34;return_code&#34;:0,&#34;status&#34;:[],&#34;comment_id&#34;:201505080943113579}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于RESTful 服务，主要目标必定是尽最大可能保持可见性：使用HTTP方法时，其语义要与HTTP所规定的语义保持一致，并添加适当的标头来描述请求和响应；另一方面是使用适当的状态码和状态消息，以便代理、缓存和客户端可以决定请求的结果，状态码是一个整数，状态消息是文本。</p>
+<p>降低可见性原因：
+-数据的重叠</p>
+<p>为了其他好处放弃可见性：
+-方便客户端：为了方便客户端使用，服务器可能需要设计特定目标的粗粒度组件资源
+-抽象
+-网络效率：当客户端需要在短时间内连续执行几个操作时，可能需要将这些操作组合到一个批处理中，以降低网络延迟。</p>
+<p>####如何在服务器端实现安全和幂等的方法
+实现GET/OPTION/HEAD方法时，不要引起任何副作用。当客户端重新提交一个GET/HEAD/OPTIONS/PUT或DELETE请求时，确保服务器提供同样的表述形式：
+<img src="http://upload-images.jianshu.io/upload_images/439839-388a3debc2df3549.png" alt="http_method.png"></p>
+<p>#####实现安全方法
+为了保证安全方法不会引起副作用，可以将安全方法实现为只读操作：即客户端发起请求时，不会改变资源的状态。</p>
+<p>#####幂等方法
+幂等性保证客户端重复发起某个请求的效果与一次请求的效果一致。除POST以外的所有方法都必须是幂等的。在编程语言的术语中，幂等方法类似于<code>setter</code>。</p>
+<p>######DELETE方法的幂等性
+DELETE方法是幂等的。这意味着就算服务器在前一个请求中已经删除了资源，它也必须返回200 （OK）响应码</p>
+<p>####如何在客户端吹安全和幂等方法
+#####安全方法
+把GET/OPTIONS/HEAD看做只读操作，需要时，可以随时发起这些请求。
+#####幂等方法
+幂等性保证了客户端可以在不能肯定服务器是否成功处理了请求时，重复发起这一请求。在HTTP中，除了POST以外的所有方法都是幂等的。</p>
+<p>####何时使用GET方法
+使用 GET方法进行安全与幂等的信息获取。不要把GET方法用于不安全或非幂等操作，因为这样做可能会造成永久性的、意想不到的、不符合需要的资源改变。</p>
+<p>####何时使用POST方法</p>
+<ul>
+<li>创建新的资源。</li>
+<li>通过一个控制器资源来修改一个或多个资源</li>
+<li>执行需要大数据输入的查询</li>
+<li>在其他HTTP方法看上去不合适时，执行不安全或非幂等的操作。</li>
+</ul>
+<p>####何时使用PUT方法创建新资源
+只有在客户端可以决定资源的URi时才使用PUT方法创建新资源，否则使用POST.举个例子，一台存储服务器可能为每个客户端分配一个根URL，并让客户端把根URI作为文件系统的根目录，以便创建新资源，如果不能控制URI，请使用POST方法</p>
+<p>####如何使用POST方法实现异步任务
+HTTP是一种同步、无状态的协议。当客户端向服务器提交一个请求时，无论成功与否，客户端都期望得到一个回答。
+在接收到POST请求时，创建一个新的资源，并返回状态码202，其包含新资源的表述，这个新资源目的是让客户端可以跟踪异步任务的状态。</p>
+
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-01-05
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/web/">Web</a>
+          <a href="/tags/restful/">Restful</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/restfulwebservices2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">restfulWebServices2</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/githubconnectionway/">
+            <span class="next-text nav-default">githubConnectionWay</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

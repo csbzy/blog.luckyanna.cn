@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>字节算法题-无重复字符的最长子串 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="无重复字符的最长子串 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1: 输入: s =" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/2023/alg/alg_lengthoflongestsubstring/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="字节算法题-无重复字符的最长子串" />
+<meta property="og:description" content="无重复字符的最长子串 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1: 输入: s =" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/2023/alg/alg_lengthoflongestsubstring/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-12-21T10:36:41+08:00" />
+<meta property="article:modified_time" content="2023-12-21T10:36:41+08:00" />
+
+<meta itemprop="name" content="字节算法题-无重复字符的最长子串">
+<meta itemprop="description" content="无重复字符的最长子串 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1: 输入: s ="><meta itemprop="datePublished" content="2023-12-21T10:36:41+08:00" />
+<meta itemprop="dateModified" content="2023-12-21T10:36:41+08:00" />
+<meta itemprop="wordCount" content="1440">
+<meta itemprop="keywords" content="算法," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="字节算法题-无重复字符的最长子串"/>
+<meta name="twitter:description" content="无重复字符的最长子串 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1: 输入: s ="/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">字节算法题-无重复字符的最长子串</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-12-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E7%AE%97%E6%B3%95/"> 算法 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#无重复字符的最长子串">无重复字符的最长子串</a></li>
+            <li><a href="#解法">解法</a></li>
+            <li><a href="#另一个更简洁的解法">另一个更简洁的解法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="无重复字符的最长子串">无重复字符的最长子串</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+</span></span><span class="line"><span class="cl">示例 1:
+</span></span><span class="line"><span class="cl">输入: s = &#34;abcabcbb&#34;
+</span></span><span class="line"><span class="cl">输出: 3 
+</span></span><span class="line"><span class="cl">解释: 因为无重复字符的最长子串是 &#34;abc&#34;，所以其长度为 3。
+</span></span><span class="line"><span class="cl">示例 2:
+</span></span><span class="line"><span class="cl">输入: s = &#34;bbbbb&#34;
+</span></span><span class="line"><span class="cl">输出: 1
+</span></span><span class="line"><span class="cl">解释: 因为无重复字符的最长子串是 &#34;b&#34;，所以其长度为 1。
+</span></span><span class="line"><span class="cl">示例 3:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输入: s = &#34;pwwkew&#34;
+</span></span><span class="line"><span class="cl">输出: 3
+</span></span><span class="line"><span class="cl">解释: 因为无重复字符的最长子串是 &#34;wke&#34;，所以其长度为 3。
+</span></span><span class="line"><span class="cl">     请注意，你的答案必须是 子串 的长度，&#34;pwke&#34; 是一个子序列，不是子串。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">提示：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">0 &lt;= s.length &lt;= 5 * 104
+</span></span><span class="line"><span class="cl">s 由英文字母、数字、符号和空格组成
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="解法">解法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">这是一个经典的字符串处理问题，题目要求找出一个字符串中不含有重复字符的最长子串的长度。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">解决这个问题的一个常见方法是使用滑动窗口。滑动窗口是一个动态的子字符串，我们可以通过移动窗口的左边界和右边界来改变窗口的大小。在这个问题中，我们可以使用两个指针（left 和 right）来表示窗口的左边界和右边界。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">初始时，left 和 right 都指向字符串的开始位置。然后我们逐渐向右移动 right 指针，如果 right 指向的字符在窗口中没有出现过，那么就将这个字符加入窗口；如果 right 指向的字符在窗口中已经出现过，那么就向右移动 left 指针，直到这个字符不再在窗口中出现，然后再将这个字符加入窗口。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">在这个过程中，每次移动 right 指针后，窗口中的字符就是一个没有重复字符的子串，我们可以记录下这个子串的长度。最后，所有这些长度中的最大值就是我们要找的答案。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">这个方法的时间复杂度是 O(n)，其中 n 是字符串的长度。因为每个字符最多被 left 和 right 指针各访问一次，所以总的操作次数是 2n，因此时间复杂度是 O(n)。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">window</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">rune</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">,</span> <span class="nx">res</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">right</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">c</span> <span class="o">:=</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">right</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">right</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 更新窗口数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">window</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 当窗口内有重复字符时，移动 left 缩小窗口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="nx">window</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">d</span> <span class="o">:=</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">left</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">left</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">window</span><span class="p">[</span><span class="nx">d</span><span class="p">]</span><span class="o">--</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 更新结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="nx">right</span><span class="o">-</span><span class="nx">left</span> <span class="p">&gt;</span> <span class="nx">res</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">res</span> <span class="p">=</span> <span class="nx">right</span> <span class="o">-</span> <span class="nx">left</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">res</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="s">&#34;abcabcbb&#34;</span><span class="p">))</span>  <span class="c1">// 输出: 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="s">&#34;bbbbb&#34;</span><span class="p">))</span>     <span class="c1">// 输出: 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="s">&#34;pwwkew&#34;</span><span class="p">))</span>    <span class="c1">// 输出: 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="另一个更简洁的解法">另一个更简洁的解法</h3>
+<p>首先，如果输入的字符串 s 的长度小于 2，那么最长的无重复字符的子串就是 s 本身，所以直接返回 s 的长度。</p>
+<p>然后，定义了四个变量：<code>left</code> 和 <code>right</code> 分别表示滑动窗口的左右边界，<code>maxLength</code> 用来记录最长的无重复字符的子串的长度，<code>exists</code> 是一个字典，用来记录每个字符最后出现的位置。</p>
+<p>接下来，开始遍历字符串 s。在每次循环中，首先检查 right 指向的字符是否在 exists 中，如果在，说明这个字符在 left 和 right 之间已经出现过，所以需要移动 left 到这个字符上一次出现的位置的下一个位置，这样 left 和 right 之间的子串就不包含重复的字符。这里使用 maxIn 函数是为了防止 left 向左移动。(比如这总情况<code>abcbacc</code>)</p>
+<p>然后，将 right 指向的字符和其位置添加到 exists 中，这样在下次遇到这个字符时就可以知道它上一次出现的位置。</p>
+<p>接着，如果<code>right - left + 1</code> 大于 <code>maxLength</code>，就更新 maxLength。这是因为 <code>right - left + 1</code> 就是 left 和 right 之间的子串的长度，如果这个长度大于 <code>maxLength</code>，说明找到了一个更长的无重复字符的子串。</p>
+<p>最后，将 right 向右移动一位，继续下一次循环。</p>
+<p>当所有的字符都被遍历过后，返回 maxLength，这就是无重复字符的最长子串的长度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">longestsubstring</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">left</span>      <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">right</span>     <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">maxLength</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">exists</span>    <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">byte</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">right</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">exists</span><span class="p">[</span><span class="nx">s</span><span class="p">[</span><span class="nx">right</span><span class="p">]];</span> <span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">left</span> <span class="p">=</span> <span class="nf">maxIn</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">exists</span><span class="p">[</span><span class="nx">s</span><span class="p">[</span><span class="nx">right</span><span class="p">]]</span> <span class="p">=</span> <span class="nx">right</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">right</span><span class="o">-</span><span class="nx">left</span><span class="o">+</span><span class="mi">1</span> <span class="p">&gt;</span> <span class="nx">maxLength</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">maxLength</span> <span class="p">=</span> <span class="nx">right</span> <span class="o">-</span> <span class="nx">left</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">right</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">maxLength</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-12-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2023/howhttpsworks/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">HTTPS通讯流程(基于tls1.2)</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2023/what-is-sso/">
+            <span class="next-text nav-default">单点登陆（SSO）是什么</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

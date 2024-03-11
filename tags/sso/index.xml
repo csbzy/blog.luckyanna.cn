@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSO on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/sso/</link>
+    <description>Recent content in SSO on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 19 Dec 2023 16:11:40 +0800</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/sso/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>单点登陆（SSO）是什么</title>
+      <link>https://blog.luckyanna.cn/post/2023/what-is-sso/</link>
+      <pubDate>Tue, 19 Dec 2023 16:11:40 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/what-is-sso/</guid>
+      <description>引语 当你清空了浏览器的cookie后，一定遇到过下面的这种糟糕经历： 使用A网站时需要重新登陆，使用B网站是还是需要重新登陆，使用C网站时&amp;h</description>
+    </item>
+  </channel>
+</rss>

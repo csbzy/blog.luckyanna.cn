@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>webrtc一些笔记 - 一蓑烟雨</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="bobo" /><meta name="description" content="webrtc一些笔记 基础框架 组成部分： Signalling,客户端session控制，网络和多媒体信息同步的机制。不是RTCPerrConn" /><meta name="keywords"
+  content="Hugo, theme, even" />
+
+
+
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.121.1 with theme even" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/post/webrtc%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="webrtc一些笔记" />
+<meta property="og:description" content="webrtc一些笔记 基础框架 组成部分： Signalling,客户端session控制，网络和多媒体信息同步的机制。不是RTCPerrConn" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.luckyanna.cn/post/webrtc%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2016-09-13T10:02:05+00:00" />
+<meta property="article:modified_time" content="2016-09-13T10:02:05+00:00" />
+
+<meta itemprop="name" content="webrtc一些笔记">
+<meta itemprop="description" content="webrtc一些笔记 基础框架 组成部分： Signalling,客户端session控制，网络和多媒体信息同步的机制。不是RTCPerrConn"><meta itemprop="datePublished" content="2016-09-13T10:02:05+00:00" />
+<meta itemprop="dateModified" content="2016-09-13T10:02:05+00:00" />
+<meta itemprop="wordCount" content="1320">
+<meta itemprop="keywords" content="webrtc,peer to peer," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="webrtc一些笔记"/>
+<meta name="twitter:description" content="webrtc一些笔记 基础框架 组成部分： Signalling,客户端session控制，网络和多媒体信息同步的机制。不是RTCPerrConn"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">webrtc一些笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-09-13 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h4 id="webrtc一些笔记">webrtc一些笔记</h4>
+<h5 id="基础框架">基础框架</h5>
+<p><img src="http://7xj8b1.com1.z0.glb.clouddn.com/turn.png" alt=""></p>
+<p>组成部分：</p>
+<ol>
+<li>
+<p>Signalling,客户端session控制，网络和多媒体信息同步的机制。不是RTCPerrConnection API的一部分，用户可以根据需求自己定义和实现signalling，signalling主要用于三种类型的信息：</p>
+<ul>
+<li>session控制消息：初始化或关闭 会话，还可以上报错误</li>
+<li>网络配置：通过signalling告诉 第三方(想和自己连接的Peer)自己的IP和Port</li>
+<li>多媒体文件处理能力:决定双方的多媒体文件的编码、解码格式。</li>
+</ul>
+</li>
+<li>
+<p>ICE framework 用于连接Peer(端点)间的互相连接.</p>
+</li>
+<li>
+<p>STUN 和 STUN协议的扩展 <a href="https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT">TURN</a>协议，这个主要是<a href="https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment">ICE</a> framework 用来支持 NAT穿透，使得 RTCPeerConnection 能够应对变幻莫测的网络环境。</p>
+</li>
+</ol>
+<p><code>stun</code>的<code>long-term credential mechanism</code> 的key 可以通过<code>coturn</code>的 <code>turnadmin -a -u username -p password -k</code>获得,也就是说如果通过<code>udp</code>连接到<code>coturn server</code>则需要通过 <code>long-term credential mechanism</code> 来认证,下面的例子：</p>
+<p>server:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">turnserver  --user=ninefingers:0xbc807ee29df3c9ffa736523fb2c4e8ee --user=gorst:hero -r north.gov --cert=turn_server_cert.pem  --pkey=turn_server_pkey.pem --log-file=stdout -v --mobility --cipher-list=ALL $@
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>client 使用udp:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">turnutils_uclient  -z 5 -n 10 -s -m 1 -l 170 -e 127.0.0.1 -X -g -u ninefingers -w youhavetoberealistic   $server_ip -v
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>client 使用tcp:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">turnutils_uclient  -z 5 -n 10 -s -m 1 -l 170 -e 127.0.0.1 -X -g -u gorst -W hero  $server_ip -v
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意在server命令中 <code>--user=ninefingers:0xbc807ee29df3c9ffa736523fb2c4e8ee</code>和<code>--user=gorst:hero</code>的不同。</p>
+<p>简单的来说，<code>stun</code> 用来告诉client自身穿透nat之后的公网ip和端口是多少，而<code>turn</code>则是扩展了中继转发功能,<code>turn</code>具体流程如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                                                            Peer A
+</span></span><span class="line"><span class="cl">                                       Server-Reflexive    +---------+
+</span></span><span class="line"><span class="cl">                                       Transport Address   |         |
+</span></span><span class="line"><span class="cl">                                       192.0.2.150:32102   |         |
+</span></span><span class="line"><span class="cl">                                           |              /|         |
+</span></span><span class="line"><span class="cl">                         TURN              |            / ^|  Peer A |
+</span></span><span class="line"><span class="cl">   Client’s              Server            |           /  ||         |
+</span></span><span class="line"><span class="cl">   Host Transport        Transport         |         //   ||         |
+</span></span><span class="line"><span class="cl">   Address               Address           |       //     |+---------+
+</span></span><span class="line"><span class="cl">  10.1.1.2:49721       192.0.2.15:3478     |+-+  //     Peer A
+</span></span><span class="line"><span class="cl">           |               |               ||N| /       Host Transport
+</span></span><span class="line"><span class="cl">           |   +-+         |               ||A|/        Address
+</span></span><span class="line"><span class="cl">           |   | |         |               v|T|     192.168.100.2:49582
+</span></span><span class="line"><span class="cl">           |   | |         |               /+-+
+</span></span><span class="line"><span class="cl">+---------+|   | |         |+---------+   /              +---------+
+</span></span><span class="line"><span class="cl">|         ||   |N|         ||         | //               |         |
+</span></span><span class="line"><span class="cl">| TURN    |v   | |         v| TURN    |/                 |         |
+</span></span><span class="line"><span class="cl">| Client  |----|A|----------| Server  |------------------|  Peer B |
+</span></span><span class="line"><span class="cl">|         |    | |^         |         |^                ^|         |
+</span></span><span class="line"><span class="cl">|         |    |T||         |         ||                ||         |
+</span></span><span class="line"><span class="cl">+---------+    | ||         +---------+|                |+---------+
+</span></span><span class="line"><span class="cl">               | ||                    |                |
+</span></span><span class="line"><span class="cl">               | ||                    |                |
+</span></span><span class="line"><span class="cl">               +-+|                    |                |
+</span></span><span class="line"><span class="cl">                  |                    |                |
+</span></span><span class="line"><span class="cl">                  |                    |                |
+</span></span><span class="line"><span class="cl">            Client’s                   |            Peer B
+</span></span><span class="line"><span class="cl">            Server-Reflexive    Relayed             Transport
+</span></span><span class="line"><span class="cl">            Transport Address   Transport Address   Address
+</span></span><span class="line"><span class="cl">            192.0.2.1:7000      192.0.2.15:50000     192.0.2.210:49191
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在上图中，左边的TURN Client是位于NAT后面的一个客户端（内网地址是10.1.1.2:49721），连接公网的TURN服务器（默认端口3478）后， 服务器会得到一个Client的反射地址（Reflexive Transport Address, 即NAT分配的公网IP和端口)192.0.2.1:7000， 此时Client会通过TURN命令创建或管理ALLOCATION，allocation是服务器上的一个数据结构，包含了中继地址的信息。 服务器随后会给Client分配一个中继地址，即图中的192.0.2.15:50000，另外两个对等端若要通过TURN协议和Client进行通信， 可以直接往中继地址收发数据即可，TURN服务器会把发往指定中继地址的数据转发到对应的Client，这里是其反射地址。</p>
+<p>Server上的每一个allocation都唯一对应一个client，并且只有一个中继地址，因此当数据包到达某个中继地址时，服务器总是知道应该将其转发到什么地方。 但值得一提的是，一个Client可能在同一时间在一个Server上会有多个allocation，这和上述规则是并不矛盾的。</p>
+<p>通信过程：
+<img src="http://7xj8b1.com1.z0.glb.clouddn.com/p2p_process.png" alt=""></p>
+<p>参考：<br>
+<a href="https://pannzh.github.io/tech/p2p/2015/12/16/p2p-standard-protocol-turn.html">P2P通信标准协议(二)之TURN</a><br>
+<a href="https://github.com/YK-Unit/AppRTCDemo/blob/master/README.md#the-basic-p2p-communication-process">the-basic-p2p-communication-process</a></p>
+
+      
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">bobo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-09-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/wx.png">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/zfb.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/webrtc/">webrtc</a>
+          <a href="/tags/peer-to-peer/">peer to peer</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/flutter-ffi-golang/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">flutter ffi golang</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/goa%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E8%A7%A3%E6%9E%90/">
+            <span class="next-text nav-default">goa请求处理解析</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <script src="https://giscus.app/client.js" data-repo="csbzy/csbzy.github.io"
+  data-repo-id="MDEwOlJlcG9zaXRvcnk0NDc4NzM4OQ==" data-category-id="DIC_kwDOAqtmvc4Cbs_c" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top"
+  data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async>
+  </script>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
+  <a href="https://blog.luckyanna.cn/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+  <span>
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FSJCZK2XT2');
+</script>
+
+
+
+
+
+
+</body>
+</html>

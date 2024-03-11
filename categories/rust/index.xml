@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rust on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/categories/rust/</link>
+    <description>Recent content in rust on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 18 Dec 2023 22:52:19 +0800</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/categories/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fn call(&amp;self, param: T) -&gt; R 解析</title>
+      <link>https://blog.luckyanna.cn/post/2023/rust-handler-trait/</link>
+      <pubDate>Mon, 18 Dec 2023 22:52:19 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/rust-handler-trait/</guid>
+      <description>代码解析 1 2 3 pub trait Handler&amp;lt;T, R&amp;gt; { fn call(&amp;amp;self, param: T) -&amp;gt; R; } Handler trait定义了一个方法call，它接收一个类型为T的参数，并返回一个类型为R的值。&amp;amp;sel</description>
+    </item>
+  </channel>
+</rss>

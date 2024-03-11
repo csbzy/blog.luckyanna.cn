@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud on 一蓑烟雨</title>
+    <link>https://blog.luckyanna.cn/tags/cloud/</link>
+    <description>Recent content in cloud on 一蓑烟雨</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 19 Dec 2023 15:33:51 +0800</lastBuildDate>
+    <atom:link href="https://blog.luckyanna.cn/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IaaS PaaS SaaS说的是啥？</title>
+      <link>https://blog.luckyanna.cn/post/2023/what-is-iaas-paas-saas/</link>
+      <pubDate>Tue, 19 Dec 2023 15:33:51 +0800</pubDate>
+      <guid>https://blog.luckyanna.cn/post/2023/what-is-iaas-paas-saas/</guid>
+      <description>下面这张图清晰表达出IasS(基础设施即服务)，PaaS(平台即服务)和SaaS(软件即服务)三者之间的区别 对于非云上的应用来说，我们需要自</description>
+    </item>
+  </channel>
+</rss>
