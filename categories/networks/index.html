@@ -1,22 +1,47 @@
 <!DOCTYPE html>
-<html lang="zh-cn"
-  x-data
-  :class="$store.darkMode.class()"
-  :data-theme="$store.darkMode.theme()">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Networks | 白日梦想马</title>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Networks · 白日梦想马</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author"
+  content="" /><meta name="description" content="一蓑烟雨的随记" /><meta name="keywords"
+  content="Hugo, theme, even" />
 
 
 
-<meta name="author" content="map[name:bobo]" />
-<meta name="description" content="一蓑烟雨的随记" />
+
+<meta name="google-site-verification" content="lUaU6D871VMXdBpU71knComSnKryiMNXUrRZx7Dregk" />
+
+
+<meta name="generator" content="Hugo 0.130.0 with theme even" />
 
 
 <link rel="canonical" href="https://blog.luckyanna.cn/categories/networks/" />
+<link href="https://blog.luckyanna.cn/categories/networks/index.xml" rel="alternate" type="application/rss+xml" title="白日梦想马" />
+<link href="https://blog.luckyanna.cn/categories/networks/index.xml" rel="feed" type="application/rss+xml" title="白日梦想马" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:url" content="https://blog.luckyanna.cn/categories/networks/">
@@ -26,396 +51,176 @@
   <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="website">
 
-
-
-
+  <meta itemprop="name" content="Networks">
+  <meta itemprop="description" content="一蓑烟雨的随记">
+  <meta itemprop="datePublished" content="2024-01-18T16:02:59+08:00">
+  <meta itemprop="dateModified" content="2024-01-18T16:02:59+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Networks">
   <meta name="twitter:description" content="一蓑烟雨的随记">
 
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
 
-
-<meta name="generator" content="Hugo 0.130.0">
-
-<link rel="stylesheet" href="/css/output.css" />
-
-<style>
-
-
-
-</style>
-
-
-     
-
-    
-
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  </head>
-
-  <body x-data="{
-    flip: false,
-  }">
-    
-    <div id="dream-global-bg"></div>
-
-    
-<nav class="mt-4 lg:mt-8 py-4">
-
-  <div class="container flex justify-between px-4">
-    <section class="flex items-center gap-4">
-      <div class="avatar cursor-pointer hover:online" @click="flip = !flip" title="">
-        <div class="h-10 rounded-full">
-          <img src="/" alt="" />
-        </div>
-      </div>
-
-      
-    </section>
-
-    <div class="dropdown dropdown-end sm:hidden">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-square">
-        <ion-icon name="menu-outline" size="large"></ion-icon>
-      </div>
-      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-[1] shadow-md">
-        
-
-
-
-
-
-
-<li>
-  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="">
-    <ion-icon name="grid"></ion-icon>
-    
-  </a>
-</li>
-
-
-
-<li>
-  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="">
-    <ion-icon name="pricetags"></ion-icon>
-    
-  </a>
-</li>
-
-
-
-
-      </ul>
-    </div>
-    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
-      
-
-      
-
-      
-
-      
-      <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/categories" title="">
-        <ion-icon class="group-hover:text-primary-content" name="grid"></ion-icon>
-      </a>
-      
-
-      
-      <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/tags" title="">
-        <ion-icon class="group-hover:text-primary-content" name="pricetags"></ion-icon>
-      </a>
-      
-
-      
-    </section>
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">一蓑烟雨</a>
   </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
 </nav>
 
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">一蓑烟雨</a>
+</div>
 
-    <div class="flip-container" :class="{ 'flip-it': flip }">
-      <div class="flipper">
-        <div class="front">
-          <div class="container">
-            
 
-<div class="flex flex-col md:flex-row gap-4 mt-8 lg:mt-12 px-4">
-  <div class="md:basis-[200px] lg:basis-[300px] prose dark:prose-invert">
-    <h1 class="text-2xl">Networks</h1>
-    <p class="text-sm"></p>
-    <div class="flex flex-wrap gap-4 mt-6">
-      
 
-      
-      
-      <a href="/categories/database/" class="badge h-6 no-underline hover:badge-primary">
-        Database
-      </a>
-      
-      
-      
-      <a href="/categories/flutter/" class="badge h-6 no-underline hover:badge-primary">
-        Flutter
-      </a>
-      
-      
-      
-      <a href="/categories/golang/" class="badge h-6 no-underline hover:badge-primary">
-        Golang
-      </a>
-      
-      
-      
-      <span class="badge h-6 badge-primary">
-        Networks
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="archive" class="archive">
+  <div class="archive-title category">
+        <h2 class="archive-name">Networks</h2>
+      </div>
+
+  <div class="archive-post">
+      <span class="archive-post-time">
+        2024-01-18
       </span>
-      
-      
-      
-      <a href="/categories/rust/" class="badge h-6 no-underline hover:badge-primary">
-        Rust
-      </a>
-      
-      
-      
-      <a href="/categories/system-design/" class="badge h-6 no-underline hover:badge-primary">
-        System Design
-      </a>
-      
-      
-      
-      <a href="/categories/%E7%AE%97%E6%B3%95/" class="badge h-6 no-underline hover:badge-primary">
-        算法
-      </a>
-      
-      
+      <span class="archive-post-title">
+        <a href="/post/2024/1/tcp/" class="archive-post-link">
+          TCP连接相关问题
+        </a>
+      </span>
+    </div><div class="archive-post">
+      <span class="archive-post-time">
+        2023-12-25
+      </span>
+      <span class="archive-post-title">
+        <a href="/post/2023/howhttpsworks/" class="archive-post-link">
+          HTTPS通讯流程(基于tls1.2)
+        </a>
+      </span>
     </div>
-  </div>
-  <div class="divider divider-vertical md:divider-horizontal"></div>
-  <div class="flex-1 space-y-4">
-    
-    
-    <a class="card image-full card-compact" href="/post/2024/1/tcp/">
-  <figure class="h-[200px]">
+</section>
+
+<nav class="pagination">
   
-    
-    
-    <picture class="w-full">
-      <source srcset="/images/default4_hu3d03a01dcc18bc5be0e67db3d8d209a6_32836_640x426_resize_q75_h2_box.webp" type="image/webp" />
-      <img class="w-full" src="/images/default4.jpg" alt="/images/default4.jpg" />
-    </picture>
-    
   
-  </figure>
+</nav>
+        </div>
+        
+      </div>
+    </main>
 
-  <div class="card-body">
-    <h2 class="card-title">TCP连接相关问题</h2>
-
-    <p class="date">
-    Thursday, Jan 18, 2024
-    </p>
-
-    TCP 连接建立,断开过程 TCP的三次握手是建立TCP连接的过程,下面是TCP连接三次握手和断开四次挥手过程的状态机流程图： sequenceDiagram participant Client participant Server Client->>Server: SYN Server-->>Client: SYN+ACK Client->>Server: ACK
-
-    <div class="card-actions justify-between items-center mt-4">
-      <div class="flex items-center">
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="mailto:chenshaobo65@email.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://github.com/csbzy" class="iconfont icon-github" title="github"></a>
   
-  <span>@</span>
-  
+  <a href="https://blog.luckyanna.cn/categories/networks/index.xml" rel="feed" type="application/rss+xml" class="iconfont icon-rss"
+    title="白日梦想马"></a>
+</div>
 
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
   <span>
-  
-    map[name:bobo]
-  
+    <script type="text/javascript"
+      src="//rf.revolvermaps.com/0/0/8.js?i=5cj5pejxv1j&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=comic_sans_ms&amp;l=17"
+      async="async"></script>
+  </span>
+  <span class="copyright-year">
+    &copy;
+    2017 -
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>bobo</span>
   </span>
 </div>
+    </footer>
 
-
-      <div class="inline-flex items-center">
-        <ion-icon name="time" class="mr-1"></ion-icon>
-        <span>5</span>
-      </div>
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
   </div>
-</a>
-
-    
-    <a class="card image-full card-compact" href="/post/2023/howhttpsworks/">
-  <figure class="h-[200px]">
   
-    
-    
-    <picture class="w-full">
-      <source srcset="/images/default1_hu3d03a01dcc18bc5be0e67db3d8d209a6_69563_640x512_resize_q75_h2_box.webp" type="image/webp" />
-      <img class="w-full" src="/images/default1.jpg" alt="/images/default1.jpg" />
-    </picture>
-    
-  
-  </figure>
-
-  <div class="card-body">
-    <h2 class="card-title">HTTPS通讯流程(基于tls1.2)</h2>
-
-    <p class="date">
-    Monday, Dec 25, 2023
-    </p>
-
-    HTTPS基于TLS加密传输数据,链路的数据都是加密后的二进制数据 那么HTTPS是如何保证数据不会被破解的呢? 我们来看下HTTPS的整个通讯
-
-    <div class="card-actions justify-between items-center mt-4">
-      <div class="flex items-center">
-  
-  <span>@</span>
-  
-
-  <span>
-  
-    map[name:bobo]
-  
-  </span>
-</div>
-
-
-      <div class="inline-flex items-center">
-        <ion-icon name="time" class="mr-1"></ion-icon>
-        <span>2</span>
-      </div>
-    </div>
-  </div>
-</a>
-
-    
-
-    
-  </div>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
 
 
 
-            <footer class="flex justify-between items-center gap-2 px-4 py-12">
-              <div>
-  
-  <p>© 2024 白日梦想马</p>
-  
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
-  
-  <p class="text-sm">
-    🌱
-    <span class="text-base-content/60">
-      Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
-      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
-    >
-  </p>
-  
-</div>
 
-              <div
-  x-data="{ icons: [
-    { name: 'moon', status: 'y' },
-    { name: 'sunny', status: 'n' },
-    { name: 'desktop', status: 'auto' }
-  ] }"
-  class="flex items-center h-[32px] px-2 gap-2 border border-base-300 rounded-full"
->
-  <template x-for="icon in icons">
-    <div
-      role="button"
-      tabindex="0"
-      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
-      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
-      @click="$store.darkMode.toggle(icon.status)"
-    >
-      <ion-icon
-        :name="`${icon.name}-outline`"
-        class="group-hover:text-primary-content"
-        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
-      >
-      </ion-icon>
-    </div>
-  </template>
-</div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-            </footer>
-          </div>
-        </div>
-        <div class="back">
-          <div class="container">
-            <div class="dream-grid">
-  
-
-  
-
-  
-  
-</div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-  window.lightTheme =  null 
-  window.darkTheme =  null 
-
-  window.hasTwitterEmbed =  null 
-  if (window.hasTwitterEmbed) {
-    
-    window.twttr = (function (d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {}
-      if (d.getElementById(id)) return t
-      js = d.createElement(s)
-      js.id = id
-      js.src = 'https://platform.twitter.com/widgets.js'
-      fjs.parentNode.insertBefore(js, fjs)
-
-      t._e = []
-      t.ready = function (f) {
-        t._e.push(f)
-      }
-
-      return t
-    })(document, 'script', 'twitter-wjs')
-  }
+  gtag('config', 'G-FSJCZK2XT2');
 </script>
-<script src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
-<script src="/js/grid.js"></script>
-<script src="/js/main.js"></script>
-
-    
 
 
 
 
 
-    
 
-    
-    
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-FSJCZK2XT2');
-        }
-      </script>
-    
-  
-
-
-    
-
-    <script type="module" src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
-  </body>
+</body>
 </html>
