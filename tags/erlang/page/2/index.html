@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-cn"
+  x-data
+  :class="$store.darkMode.class()"
+  :data-theme="$store.darkMode.theme()">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erlang | 白日梦想马</title>
+
+    
+
+
+
+<meta name="author" content="map[name:bobo]" />
+<meta name="description" content="一蓑烟雨的随记" />
+
+
+<link rel="canonical" href="https://blog.luckyanna.cn/tags/erlang/" />
+
+
+<meta property="og:url" content="https://blog.luckyanna.cn/tags/erlang/">
+  <meta property="og:site_name" content="白日梦想马">
+  <meta property="og:title" content="Erlang">
+  <meta property="og:description" content="一蓑烟雨的随记">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="website">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Erlang">
+  <meta name="twitter:description" content="一蓑烟雨的随记">
+
+
+
+<meta name="generator" content="Hugo 0.130.0">
+
+<link rel="stylesheet" href="/css/output.css" />
+
+<style>
+
+
+
+</style>
+
+
+     
+
+    
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+
+  <body x-data="{
+    flip: false,
+  }">
+    
+    <div id="dream-global-bg"></div>
+
+    
+<nav class="mt-4 lg:mt-8 py-4">
+
+  <div class="container flex justify-between px-4">
+    <section class="flex items-center gap-4">
+      <div class="avatar cursor-pointer hover:online" @click="flip = !flip" title="">
+        <div class="h-10 rounded-full">
+          <img src="/" alt="" />
+        </div>
+      </div>
+
+      
+    </section>
+
+    <div class="dropdown dropdown-end sm:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square">
+        <ion-icon name="menu-outline" size="large"></ion-icon>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-[1] shadow-md">
+        
+
+
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="">
+    <ion-icon name="grid"></ion-icon>
+    
+  </a>
+</li>
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="">
+    <ion-icon name="pricetags"></ion-icon>
+    
+  </a>
+</li>
+
+
+
+
+      </ul>
+    </div>
+    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
+      
+
+      
+
+      
+
+      
+      <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/categories" title="">
+        <ion-icon class="group-hover:text-primary-content" name="grid"></ion-icon>
+      </a>
+      
+
+      
+      <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/tags" title="">
+        <ion-icon class="group-hover:text-primary-content" name="pricetags"></ion-icon>
+      </a>
+      
+
+      
+    </section>
+  </div>
+</nav>
+
+
+    <div class="flip-container" :class="{ 'flip-it': flip }">
+      <div class="flipper">
+        <div class="front">
+          <div class="container">
+            
+
+<div class="flex flex-col md:flex-row gap-4 mt-8 lg:mt-12 px-4">
+  <div class="md:basis-[200px] lg:basis-[300px] prose dark:prose-invert">
+    <h1 class="text-2xl">Erlang</h1>
+    <p class="text-sm"></p>
+    <div class="flex flex-wrap gap-4 mt-6">
+      
+
+      
+      
+      <a href="/tags/cloud/" class="badge h-6 no-underline hover:badge-primary">
+        Cloud
+      </a>
+      
+      
+      
+      <a href="/tags/cowboy/" class="badge h-6 no-underline hover:badge-primary">
+        Cowboy
+      </a>
+      
+      
+      
+      <a href="/tags/database/" class="badge h-6 no-underline hover:badge-primary">
+        Database
+      </a>
+      
+      
+      
+      <a href="/tags/ejabberd/" class="badge h-6 no-underline hover:badge-primary">
+        Ejabberd
+      </a>
+      
+      
+      
+      <span class="badge h-6 badge-primary">
+        Erlang
+      </span>
+      
+      
+      
+      <a href="/tags/ffi/" class="badge h-6 no-underline hover:badge-primary">
+        Ffi
+      </a>
+      
+      
+      
+      <a href="/tags/git/" class="badge h-6 no-underline hover:badge-primary">
+        Git
+      </a>
+      
+      
+      
+      <a href="/tags/golang/" class="badge h-6 no-underline hover:badge-primary">
+        Golang
+      </a>
+      
+      
+      
+      <a href="/tags/hexo/" class="badge h-6 no-underline hover:badge-primary">
+        Hexo
+      </a>
+      
+      
+      
+      <a href="/tags/https/" class="badge h-6 no-underline hover:badge-primary">
+        Https
+      </a>
+      
+      
+      
+      <a href="/tags/mapreduce/" class="badge h-6 no-underline hover:badge-primary">
+        MapReduce
+      </a>
+      
+      
+      
+      <a href="/tags/micro-service/" class="badge h-6 no-underline hover:badge-primary">
+        Micro Service
+      </a>
+      
+      
+      
+      <a href="/tags/mqtt/" class="badge h-6 no-underline hover:badge-primary">
+        Mqtt
+      </a>
+      
+      
+      
+      <a href="/tags/nginx/" class="badge h-6 no-underline hover:badge-primary">
+        Nginx
+      </a>
+      
+      
+      
+      <a href="/tags/peer-to-peer/" class="badge h-6 no-underline hover:badge-primary">
+        Peer to Peer
+      </a>
+      
+      
+      
+      <a href="/tags/restful/" class="badge h-6 no-underline hover:badge-primary">
+        Restful
+      </a>
+      
+      
+      
+      <a href="/tags/riak/" class="badge h-6 no-underline hover:badge-primary">
+        Riak
+      </a>
+      
+      
+      
+      <a href="/tags/rust/" class="badge h-6 no-underline hover:badge-primary">
+        Rust
+      </a>
+      
+      
+      
+      <a href="/tags/sso/" class="badge h-6 no-underline hover:badge-primary">
+        SSO
+      </a>
+      
+      
+      
+      <a href="/tags/swift/" class="badge h-6 no-underline hover:badge-primary">
+        Swift
+      </a>
+      
+      
+      
+      <a href="/tags/tcp/" class="badge h-6 no-underline hover:badge-primary">
+        Tcp
+      </a>
+      
+      
+      
+      <a href="/tags/topk/" class="badge h-6 no-underline hover:badge-primary">
+        TopK
+      </a>
+      
+      
+      
+      <a href="/tags/trait/" class="badge h-6 no-underline hover:badge-primary">
+        Trait
+      </a>
+      
+      
+      
+      <a href="/tags/tsung/" class="badge h-6 no-underline hover:badge-primary">
+        Tsung
+      </a>
+      
+      
+      
+      <a href="/tags/web/" class="badge h-6 no-underline hover:badge-primary">
+        Web
+      </a>
+      
+      
+      
+      <a href="/tags/webrtc/" class="badge h-6 no-underline hover:badge-primary">
+        Webrtc
+      </a>
+      
+      
+      
+      <a href="/tags/%E7%AE%97%E6%B3%95/" class="badge h-6 no-underline hover:badge-primary">
+        算法
+      </a>
+      
+      
+      
+      <a href="/tags/%E5%8E%8B%E6%B5%8B/" class="badge h-6 no-underline hover:badge-primary">
+        压测
+      </a>
+      
+      
+    </div>
+  </div>
+  <div class="divider divider-vertical md:divider-horizontal"></div>
+  <div class="flex-1 space-y-4">
+    
+    
+    <a class="card image-full card-compact" href="/post/erlang%E9%80%9A%E8%BF%87nif%E9%9B%86%E6%88%90c%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/">
+  <figure class="h-[200px]">
+  
+    
+    
+    <picture class="w-full">
+      <source srcset="/images/default4_hu3d03a01dcc18bc5be0e67db3d8d209a6_32836_640x426_resize_q75_h2_box.webp" type="image/webp" />
+      <img class="w-full" src="/images/default4.jpg" alt="/images/default4.jpg" />
+    </picture>
+    
+  
+  </figure>
+
+  <div class="card-body">
+    <h2 class="card-title">Erlang通过NIF集成c代码示例</h2>
+
+    <p class="date">
+    Thursday, Oct 22, 2015
+    </p>
+
+    ERLANG NIF 编写 很多时候一下计算量大，效率要求很高的地方也许使用c会好于erlang。 Erlang层代码 通过 -on_load模块属性，实现erlan
+
+    <div class="card-actions justify-between items-center mt-4">
+      <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span>
+  
+    map[name:bobo]
+  
+  </span>
+</div>
+
+
+      <div class="inline-flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>2</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    
+    <a class="card image-full card-compact" href="/post/erlang%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+  <figure class="h-[200px]">
+  
+    
+    
+    <picture class="w-full">
+      <source srcset="/images/default3_hu3d03a01dcc18bc5be0e67db3d8d209a6_69593_640x421_resize_q75_h2_box.webp" type="image/webp" />
+      <img class="w-full" src="/images/default3.jpg" alt="/images/default3.jpg" />
+    </picture>
+    
+  
+  </figure>
+
+  <div class="card-body">
+    <h2 class="card-title">Erlang发送邮件相关问题</h2>
+
+    <p class="date">
+    Thursday, Oct 22, 2015
+    </p>
+
+    Erlang 发送邮件相关问题 协议相关 ===== 一封邮件的发送的协议格式如下： 1 2 3 4 5 6 7 8 9 10 11 12 13 &#34;HELO XXX\r\n&#34; &#34;AUTH LOGIN \r\r&#34; &#34;$Account\r\n&#34; ($Account为账号需要经过base64
+
+    <div class="card-actions justify-between items-center mt-4">
+      <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span>
+  
+    map[name:bobo]
+  
+  </span>
+</div>
+
+
+      <div class="inline-flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>1</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    
+
+    
+    <div class="flex justify-center pt-8">
+      <div class="join grid grid-cols-2">
+  
+  <a href="/tags/erlang/" title=ZgotmplZ class="join-item btn btn-outline btn-sm">
+    
+  </a>
+  
+  
+  <button class="join-item btn btn-outline btn-sm" disabled>
+    
+  </button>
+  
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+
+
+            <footer class="flex justify-between items-center gap-2 px-4 py-12">
+              <div>
+  
+  <p>© 2024 白日梦想马</p>
+  
+
+  
+  <p class="text-sm">
+    🌱
+    <span class="text-base-content/60">
+      Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
+      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
+    >
+  </p>
+  
+</div>
+
+              <div
+  x-data="{ icons: [
+    { name: 'moon', status: 'y' },
+    { name: 'sunny', status: 'n' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center h-[32px] px-2 gap-2 border border-base-300 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+            </footer>
+          </div>
+        </div>
+        <div class="back">
+          <div class="container">
+            <div class="dream-grid">
+  
+
+  
+
+  
+  
+</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  window.lightTheme =  null 
+  window.darkTheme =  null 
+
+  window.hasTwitterEmbed =  null 
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+<script src="/js/grid.js"></script>
+<script src="/js/main.js"></script>
+
+    
+
+
+
+
+
+    
+
+    
+    
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSJCZK2XT2"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-FSJCZK2XT2');
+        }
+      </script>
+    
+  
+
+
+    
+
+    <script type="module" src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>

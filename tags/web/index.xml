@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web on 一蓑烟雨</title>
+    <title>Web on 白日梦想马</title>
     <link>https://blog.luckyanna.cn/tags/web/</link>
-    <description>Recent content in Web on 一蓑烟雨</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Web on 白日梦想马</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 05 Jan 2016 10:41:11 +0000</lastBuildDate>
     <atom:link href="https://blog.luckyanna.cn/tags/web/index.xml" rel="self" type="application/rss+xml" />

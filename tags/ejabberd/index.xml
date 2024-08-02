@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ejabberd on 一蓑烟雨</title>
+    <title>Ejabberd on 白日梦想马</title>
     <link>https://blog.luckyanna.cn/tags/ejabberd/</link>
-    <description>Recent content in Ejabberd on 一蓑烟雨</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Ejabberd on 白日梦想马</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 22 Oct 2015 20:10:51 +0000</lastBuildDate>
     <atom:link href="https://blog.luckyanna.cn/tags/ejabberd/index.xml" rel="self" type="application/rss+xml" />

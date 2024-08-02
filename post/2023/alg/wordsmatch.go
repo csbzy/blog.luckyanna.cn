@@ -11,7 +11,7 @@ import "fmt"
 // 然后，我们从左到右计算所有的 `dp[i]`。
 // 对于每个 `i`，我们检查所有以 `i` 结尾的子字符串，如果这个子字符串在 `wordDict` 中，
 // 并且剩余的部分可以被表示（即 `dp[j]` 为 `true`），那么 `dp[i]` 就可以被表示。
-func wordBreak1(s string, wordDict []string) bool {
+func wordBreak(s string, wordDict []string) bool {
 	wordSet := make(map[string]bool)
 	for _, word := range wordDict {
 		wordSet[word] = true
@@ -30,7 +30,6 @@ func wordBreak1(s string, wordDict []string) bool {
 
 	return dp[len(s)]
 }
-
 
 type TreeNode struct {
 	Val   int

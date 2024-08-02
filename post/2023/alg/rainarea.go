@@ -16,22 +16,22 @@ func trap(height []int) int {
 
 	var (
 		left, right       = 0, len(height) - 1
-		maxLeft, maxRight = height[0], height[right]
+		maxLeftHeight, maxRightHeight = height[0], height[right]
 		area              = 0
 	)
 
 	for left < right {
-		if maxLeft < maxRight {
-			area += maxLeft - height[left]
+		if maxLeftHeight < maxRightHeight {
+			area += maxLeftHeight - height[left]
 			left++
-			if height[left] > maxLeft {
-				maxLeft = height[left]
+			if height[left] > maxLeftHeight {
+				maxLeftHeight = height[left]
 			}
 		} else {
-			area += maxRight - height[right]
+			area += maxRightHeight - height[right]
 			right--
-			if height[right] > maxRight {
-				maxRight = height[right]
+			if height[right] > maxRightHeight {
+				maxRightHeight = height[right]
 			}
 		}
 	}
